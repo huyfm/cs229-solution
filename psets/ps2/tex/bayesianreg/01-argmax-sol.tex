@@ -1,0 +1,10 @@
+\begin{answer}
+We have:
+\begin{align}
+	\theta_{\text{MAP}} 
+	&= \arg\max_{\theta} p(\theta|x,y) \\
+	&= \arg\max_{\theta} \frac{p(\theta|x) p(y|x,\theta)}{p(y|x)} \\
+	&= \arg\max_{\theta} p(\theta)p(y|x, \theta)
+\end{align}
+Here, we can safely remove $p(y|x)$ in the denominator as it does not depend on $\theta$. And by assumption, $p(\theta|x) = p(\theta)$. \\
+\end{answer}

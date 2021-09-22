@@ -1,0 +1,25 @@
+\item \points{20} {\bf Independent components analysis}
+
+
+While studying Independent Component Analysis (ICA) in class, we made an informal argument about why Gaussian distributed sources will not work. We also mentioned that any other distribution (except Gaussian) for the sources will work for ICA, and hence used the logistic distribution instead. In this problem, we will go deeper into understanding why Gaussian distributed sources are a problem. We will also derive ICA with the Laplace distribution, and apply it to the cocktail party problem.
+
+Reintroducing notation, let $s \in \R^\di$ be source data that is generated from $\di$ independent sources. Let $x \in \R^\di$ be observed data such that $x = As$, where $A\in\R^{\di \times \di}$ is called the \emph{mixing matrix}. We assume $A$ is invertible, and $W = A^{-1}$ is called the \emph{unmixing matrix}. So, $s = Wx$. The goal of ICA is to estimate $W$. Similar to the notes, we denote $w_j^T$ to be the $j^{th}$ row of $W$. Note that this implies that the $j^{th}$ source can be reconstructed with $w_j$ and $x$, since $s_j = w_j^T x$. We are given a training set $\{x^{(1)},\ldots,x^{(\nexp)}\}$ for the following sub-questions. Let us denote the entire training set by the design matrix $X \in \R^{\nexp \times \di}$ where each example corresponds to a row in the matrix.
+
+\begin{enumerate}
+    \input{ica/01-gaussian}
+
+\ifnum\solutions=1 {
+  \input{ica/01-gaussian-sol}
+} \fi
+
+    \input{ica/02-laplace}
+\ifnum\solutions=1 {
+  \input{ica/02-laplace-sol}
+} \fi
+
+
+    \input{ica/03-cocktail}
+\ifnum\solutions=1 {
+  \input{ica/03-cocktail-sol}
+} \fi
+\end{enumerate}

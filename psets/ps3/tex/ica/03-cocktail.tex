@@ -1,0 +1,29 @@
+\item \subquestionpoints{5} \textbf{Cocktail Party Problem}
+
+For this question you will implement the Bell and Sejnowski ICA algorithm, but
+assuming a Laplace source (as derived in part-b), instead of the Logistic distribution
+covered in class. The file \texttt{src/ica/mix.dat} contains the input data which consists of a matrix
+with 5 columns, with each column corresponding to one of the mixed signals
+$x_i$. The code for this question can be found in \texttt{src/ica/ica.py}.
+
+Implement the \texttt{update\_W} and \texttt{unmix} functions in \texttt{src/ica/ica.py}.
+
+You can then run \texttt{ica.py} in order to split the mixed audio into its components.
+The mixed audio tracks are written to \texttt{mixed\_i.wav} in the output folder.
+The split audio tracks are written to \texttt{split\_i.wav} in the output folder.
+
+To make sure your code is correct, you should listen to the
+resulting unmixed sources.  (Some overlap or noise in the sources may be present,
+but the different sources should be pretty clearly separated.)
+
+\textbf{Submit the full unmixing matrix $W$ (5$\times$5) that you obtained, by including the W.txt the code outputs along with your code.}
+
+If you implemention is correct, your output \texttt{split\_0.wav} should sound similar to the file \texttt{correct\_split\_0.wav} included with the source code.
+
+Note: In our implementation, we {\bf anneal} the learning rate $\alpha$
+(slowly decreased it over time) to speed up learning. In addition to using the variable
+learning rate to speed up convergence, one thing that we also do is
+choose a random permutation of the training data, and running stochastic
+gradient ascent visiting the training data in that order (each of the
+specified learning rates was then used for one full pass through the data).
+

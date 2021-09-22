@@ -1,0 +1,12 @@
+\begin{answer}
+We have:
+\begin{align}
+	&\ell_{\text{semi-sup}}(\theta^{(t+1)}) \\
+	&= \ell_{\text{unsup}}(\theta^{(t+1)}) + \alpha \ell_{\text{sup}}(\theta^{(t+1)}) \\
+	& \ge \sum_{i=1}^{n} \text{ELBO}(x^{(i)}, Q_i^{(t)}, \theta^{(t+1)}) + \alpha \ell_{\text{sup}}(\theta^{(t+1)}) && \text{(the Jensen's inequality)} \\
+	& \ge \sum_{i=1}^{n} \text{ELBO}(x^{(i)}, Q_i^{(t)}, \theta^{(t)}) + \alpha \ell_{\text{sup}}(\theta^{(t)}) && \text{(the E-step)}\\
+	&= \ell_{\text{unsup}}(\theta^{(t)}) + \alpha \ell_{\text{sup}}(\theta^{(t)}) && \text{(the M-step)} \\
+	&= \ell_{\text{semi-sup}}(\theta^{(t)}) 
+\end{align}
+Hence, $\ell_\text{semi-sup}(\theta^{(t+1)}) \ge \ell_\text{semi-sup}(\theta^{(t)})$ and the algorithm will converge monotonically.
+\end{answer}

@@ -1,0 +1,48 @@
+\begin{answer}
+In ICA, we want to maximize as a function of $W$ the following objective:
+\begin{align}
+	\ell(W) &= \sum_{i=1}^{n} \log p_x(x^{(i)}) \\
+	&= \sum_{i=1}^{n} \log(p_s(Wx^{(i)})|W|) \\
+	&= \sum_{i=1}^{n} \log \left(\frac{1}{(2\pi)^{d/2}} \exp\left\{-\frac{1}{2}(Wx^{(i)})^T(Wx^{(i)})\right\}|W|\right) \\
+	&= \sum_{i=1}^{n} \left(-\frac{d}{2}\log(2\pi) - \frac{1}{2}{x^{(i)}}^T W^T W x^{(i)} + \log|W|\right)
+\end{align}
+To maximize this objective, we will compute its gradient and set it equal to 0. We have:
+\begin{align}
+	\nabla_W \ell(W) &= \sum_{i=1}^{n} \left( -\frac{1}{2}\nabla_W{x^{(i)}}^T W^T W x^{(i)} + \nabla_W\log|W|\right) \\
+	&= \sum_{i=1}^{n} \left(-Wx^{(i)}{x^{(i)}}^T + {(W^{-1})}^T\right) \\
+	&= -W\left(\sum_{i=1}^{n} x^{(i)}{x^{(i)}}^T\right) + n{(W^{-1})}^T \\
+	&= -WX^TX + n{(W^{-1})}^T
+\end{align}
+Set this equal to 0, we get: $W^TW = \left(\frac{1}{n} X^TX\right)^{-1}$, assuming that the right-hand side is invertible. Let $Y = \left(\frac{1}{n} X^TX\right)^{-1}$, then Y is positive semi-definite. According to linear algebra, we can decompose $W = U\Sigma V^T$ where $U, V$ are orthogonal and $\Sigma$ is diagonal. Then, we have: 
+$$W^TW = (V\Sigma U^T)(U\Sigma V^T) = V\Sigma (U^TU) \Sigma V^T = V\Sigma^2 V^T = Y$$
+And so, we can compute the eigendecomposition of Y to recover $\Sigma^*, V^*$ and reconstruct $W = U\Sigma^* V^*$ with an arbitrary orthogonal matrix $U$. This arbitrary rotational component $U$ can not be determined from the data $X$ which leads to ambiguity. The ICA can not recover the original sources. \\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{answer}

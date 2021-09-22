@@ -1,0 +1,19 @@
+\item\subquestionpoints{5} \textbf{KL and maximum likelihood.}
+
+Consider a density estimation problem, and suppose we are given a training set $\{\xsi; i=1,\ldots, \nexp\}$.  Let the empirical distribution be $\hat{P}(x) = \frac{1}{\nexp}\sum_{i=1}^{\nexp} 1\{\xsi=x\}$. ($\hat{P}$ is just the uniform distribution over the training set; i.e., sampling from the empirical distribution is the same as picking a random example from the training set.)
+
+Suppose we have some family of distributions $P_\theta$ parameterized by $\theta$.
+(If you like, think of $P_\theta(x)$ as an alternative notation for $P(x;\theta)$.)
+Prove that finding the maximum likelihood estimate for the parameter $\theta$ is equivalent to finding $P_{\theta}$ with minimal KL divergence from $\hat{P}$. I.e. prove:
+\[
+\arg\min_\theta \KL(\hat{P}\|P_\theta)
+= \arg\max_\theta \sum_{i=1}^\nexp \log P_\theta(\xsi)
+\]
+
+{\bf Remark.} Consider the relationship between parts (b-c) and multi-variate Bernoulli Naive Bayes parameter estimation. In the Naive Bayes model we assumed $P_\theta$ is of the following form: $P_{\theta}(x,y) = p(y)\prod_{i=1}^{\di} p(x_i|y)$.  By the chain rule for KL divergence, we therefore have:
+$$
+\KL(\hat{P}\|P_\theta)
+= \KL(\hat{P}(y)\|p(y)) + \sum_{i=1}^{\di} \KL(\hat{P}(x_i|y)\|p(x_i|y)).
+$$
+This shows that finding the maximum likelihood/minimum KL-divergence estimate of the parameters decomposes into $2n+1$ independent optimization problems: One for the class priors $p(y)$, and one for each of the conditional distributions $p(x_i|y)$ for each feature $x_i$ given each of the two possible labels for $y$.  Specifically, finding the maximum likelihood estimates for each of these problems individually results in also maximizing the likelihood of the joint distribution.  (If you know what Bayesian networks are, a similar remark applies to parameter estimation for them.)
+

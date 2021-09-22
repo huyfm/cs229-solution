@@ -1,0 +1,9 @@
+\begin{answer}
+In the E-step, we need to re-estimate the latent variables $z^{(i)}$'s, $i=1 \dots n$. We have:
+\begin{align}
+	w^{(i)}_j 
+	&= p(z^{(i)}=j|x^{(i)};\theta) \\
+	&= \frac{p(z^{(i)}=j;\theta)p(x^{(i)}|z^{(i)}=j;\theta)}{\sum_{l=1}^{k} p(z^{(i)}=l;\theta)p(x^{(i)}|z^{(i)}=l;\theta)} \\
+	&= \frac{\frac{1}{(2\pi)^{d/2}|\Sigma_j|^{1/2}} \exp\left\{-\frac{1}{2}(x^{(i)}-\mu_j)^T\Sigma_j^{-1}(x^{(i)}-\mu_j)\right\}\phi_j}{\sum_{l=1}^{k}\frac{1}{(2\pi)^{d/2}|\Sigma_l|^{1/2}} \exp\left\{-\frac{1}{2}(x^{(i)}-\mu_l)^T\Sigma_l^{-1}(x^{(i)}-\mu_l)\right\}\phi_l}
+\end{align}
+\end{answer}

@@ -1,0 +1,10 @@
+\begin{answer}
+Using the result from (a), we have:
+\begin{align}
+	\theta_{\text{MAP}} 
+	&= \arg\max_{\theta} \log(p(\theta) p(y|x,\theta)) \\
+	&= \arg\min_{\theta} -\log p(y|x,\theta) - \log\left( \frac{1}{(2\pi)^{d/2}|\eta^2 I|^{1/2}} \exp(-\frac{\|\theta\|_2^2}{2\eta^2})\right) \\
+	&= \arg\min_{\theta} -\log p(y|x,\theta) + \frac{\|\theta\|_2^2}{2\eta^2}
+\end{align}
+Then, $\lambda = 1/2\eta^2$. \\
+\end{answer}

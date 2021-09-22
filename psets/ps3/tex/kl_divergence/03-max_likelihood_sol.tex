@@ -1,0 +1,13 @@
+\begin{answer}
+Consider the left-hand side:
+\begin{align}
+	\arg\min_{\theta} \KL(\hat{P}||P_{\theta}) 
+	&= \arg\min_{\theta} \E_{X \sim \hat{P}} \left[\frac{\hat{P}(X)}{P_{\theta}(X)}\right] \\
+	&= \arg\min_{\theta} \E_{X \sim \hat{P}}[\hat{P}(X)] - \E_{X \sim \hat{P}}[\log P_{\theta}(X)] \\
+	&= \arg\min_{\theta} -\sum_x \hat{P}(x) \log P_{\theta}(x) \\
+	&= \arg\max_{\theta} \sum_x \frac{1}{n} \sum_{i=1}^{n} 1\{x^{(i)} = x\} \log P_{\theta}(x) \\
+	&= \arg\max_{\theta} \sum_{i=1}^{n} \sum_x 1\{x^{(i)} = x\} \log P_{\theta}(x) \\
+	&= \arg\max_{\theta} \sum_{i=1}^{n} \log P_{\theta}(x)
+\end{align}
+In line (16), the first expectation doesn't depend on $\theta$ and can be safely removed. In line (18), the indicator function $1\{x^{(i)} = x\}$ takes value 1 only when $x = x^{(i)}$. \\
+\end{answer}

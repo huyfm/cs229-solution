@@ -1,0 +1,25 @@
+\item \subquestionpoints{5} \textbf{Estimating $\alpha$}
+
+
+The solution to estimate $p(t^{(i)}|x^{(i)})$ outlined in the previous sub-question requires the knowledge of $\alpha$ which we don't have. Now we will design a way to estimate $\alpha$ based on the function $h(\cdot)$ that approximately predicts $p(y^{(i)}=1\mid x^{(i)})$ (which we obtained in part b).  
+
+To simplify the analysis, let's assume that we have magically obtained a function $h(x)$ that perfectly predicts the value of $p(y^{(i)}=1\mid x^{(i)})$, that is, $h(x^{(i)} )= p(y^{(i)} = 1\mid x^{(i)})$.
+
+We make the crucial assumption that $p(t^{(i)}=1\mid x^{(i)}) \in \{0,1\}$. This assumption means that the process of generating the ``true'' label $t^{(i)}$ is a noise-free process. This assumption is not very unreasonable to make. Note, we are NOT assuming that the observed label $y^{(i)}$ is noise-free, which would be an unreasonable assumption!
+
+Now we will show that:
+\begin{align}
+\alpha = \mathbb{E}[h(x^{(i)})\mid y^{(i)}=1] \label{eqn:1}
+\end{align}
+
+To show this, prove that $h(x^{(i)}) = \alpha$ when $y^{(i)} = 1$, and $h(x^{(i)}) = 0$ when $y^{(i)} = 0$.
+
+The above result motivates the following algorithm to estimate $\alpha$ by estimating the RHS of the equation above using samples: 
+Let $V_{+}$ be the set of labeled (and hence positive) examples in the validation set $V$, given by $V_{+} = \{x^{(i)}\in V\mid y^{(i)} = 1\}$.
+
+Then we use 
+\begin{equation*}
+\alpha \approx \frac{1}{|V_{+}|}\sum_{x^{(i)}\in V_{+}} h(x^{(i)}).
+\end{equation*}
+to estimate $\alpha$. (You will be asked to implement this algorithm in the next sub-question. For this sub-question, you only need to show equation~\eqref{eqn:1}. Moreover, this sub-question may be slightly harder than other sub-questions.)
+

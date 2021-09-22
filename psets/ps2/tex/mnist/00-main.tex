@@ -1,0 +1,93 @@
+\item \points{30} {\bf Neural Networks: MNIST image classification}
+
+In this problem, you will implement a simple neural network
+to classify grayscale images of handwritten digits (0 - 9) from
+the MNIST dataset. The dataset contains 60,000 training images and
+10,000 testing images of handwritten digits, 0 - 9. Each image is
+28$\times$28 pixels in size, and is generally represented as a flat
+vector of 784 numbers. It also includes labels for each example, a number
+indicating the actual digit (0 - 9) handwritten in that image. A sample of
+a few such images are shown below.
+
+\begin{center}
+\includegraphics[scale=0.5]{mnist/mnist_plot}
+\end{center}
+
+
+The data and starter code for this problem can be found in
+
+\begin{itemize}
+\item \texttt{src/mnist/nn.py}
+\item \texttt{src/mnist/images\_train.csv}
+\item \texttt{src/mnist/labels\_train.csv}
+\item \texttt{src/mnist/images\_test.csv}
+\item \texttt{src/mnist/labels\_test.csv}
+\end{itemize}
+
+The starter code splits the set
+of 60,000 training images and labels into a set of 50,000 examples as
+the training set, and 10,000 examples for dev set.
+
+To start, you will implement a neural network with a single hidden layer
+and cross entropy loss, and train it with the provided data set. Use the
+sigmoid function as activation for the hidden layer, and softmax function
+for the output layer. Recall that for a single example $(x, y)$, the cross
+entropy loss is:
+$$CE(y, \hat{y}) = - \sum_{k=1}^K y_k \log \hat{y_k},$$
+where $\hat{y} \in \mathbb{R}^{K}$ is the vector of softmax outputs
+from the model for the training example $x$,
+and $y \in \mathbb{R}^{K}$ is the ground-truth vector for the training example
+$x$ such that $y = [0,...,0,1,0,...,0]^\top$ contains a single 1 at the
+position of the correct class (also called a ``one-hot'' representation).
+
+For clarity, we provide the forward propagation equations below for the neural network with a single hidden layer. We have labeled data $(x^{(i)}, y^{(i)})_{i=1}^n$, where $x^{(i)} \in \mathbb{R}^d$, and $y^{(i)} \in \mathbb{R}^K$ is a one-hot vector as described above. Let $h$ be the number of hidden units in the neural network, so that weight matrices $W^{[1]} \in \mathbb{R}^{d \times h}$ and $W^{[2]} \in \mathbb{R}^{h \times K}$. We also have biases $b^{[1]} \in \mathbb{R}^h$ and $b^{[2]} \in \mathbb{R}^K$. The forward propagation equations for a single input $x^{(i)}$ then are:
+
+\begin{align*}
+  a^{(i)} &= \sigma \left( {W^{[1]}}^\top x^{(i)}  + b^{[1]} \right)  \in \mathbb{R}^h \\
+  z^{(i) }&= {W^{[2]}}^\top a^{(i)} + b^{[2]} \in \mathbb{R}^K \\
+  \hat{y}^{(i)} &=  \mathrm{softmax}(z^{(i)}) \in \mathbb{R}^K
+\end{align*}
+where $\sigma$ is the sigmoid function. 
+
+For $\nexp$ training examples, we average the cross entropy loss over the $\nexp$ examples.
+  \begin{equation*}
+  J(W^{[1]},W^{[2]},b^{[1]},b^{[2]}) = \frac{1}{\nexp}\sum_{i=1}^\nexp CE(y^{(i)}, \hat{y}^{(i)}) = - \frac{1}{\nexp}\sum_{i=1}^\nexp \sum_{k=1}^K y_k^{(i)} \log \hat{y}_k^{(i)}.
+  \end{equation*}
+The starter code already converts labels into one hot representations for you.
+
+Instead of batch gradient descent or stochastic gradient descent, the common practice
+is to use mini-batch gradient descent for deep learning tasks. In this case, the
+cost function is defined as follows:
+
+  \begin{equation*}
+  J_{MB} = \frac{1}{B}\sum_{i=1}^{B}CE(y^{(i)}, \hat{y}^{(i)})
+  \end{equation*}
+where $B$ is the batch size, i.e. the number of training example in each mini-batch. 
+
+\begin{enumerate}
+  \input{mnist/01-grad}
+
+\ifnum\solutions=1 {
+  \input{mnist/01-grad-sol}
+} \fi
+
+  \input{mnist/02-unregularized}
+
+\ifnum\solutions=1 {
+  \input{mnist/02-unregularized-sol}
+} \fi
+
+  \input{mnist/03-regularized}
+
+\ifnum\solutions=1 {
+  \input{mnist/03-regularized-sol}
+} \fi
+
+
+  \input{mnist/04-compare}
+\ifnum\solutions=1 {
+  \input{mnist/04-compare-sol}
+} \fi
+
+ \end{enumerate}
+

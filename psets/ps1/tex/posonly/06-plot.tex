@@ -1,0 +1,21 @@
+\item \subquestionpoints{5} \textbf{Coding problem.}
+
+Using the validation set, estimate the constant $\alpha$ by averaging your
+classifier's predictions over all labeled examples in the validation set:\footnote{There is a reason to use the validation set, instead of the training set, to estimate the $\alpha$. However, for the purpose of this question, we sweep the subtlety here under the rug, and you don't need to understand the difference between the two for this question. } 
+%
+\begin{equation*}
+  \alpha \approx \frac{1}{|V_{+}|}\sum_{x^{(i)}\in V_{+}} h(x^{(i)}).
+\end{equation*}
+%
+Add code in \texttt{src/posonly/posonly.py} to rescale your
+ predictions $h(y^{(i)}=1\mid x^{(i)})$ of the classifier that is obtained from part b,  using the equation~\eqref{eqn:3} obtained in part (d) and using the estimated value for $\alpha$.
+
+
+
+Finally, create a plot to visualize the test set with $x_1$ on the horizontal axis and $x_2$ on
+the vertical axis. Use different symbols for examples $x^{(i)}$ with true label $t^{(i)} = 1$ (even though we only
+used the $y^{(i)}$ labels for training, use the true $t^{(i)}$ labels for plotting)
+than those with $t^{(i)} = 0$. On the same figure, plot the decision boundary obtained
+by your model (i.e, line corresponding to model's \textbf{adjusted} predicted probability = 0.5) in red color. Include
+this plot in your writeup.
+

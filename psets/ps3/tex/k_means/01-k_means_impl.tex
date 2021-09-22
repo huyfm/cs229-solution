@@ -1,0 +1,17 @@
+\item\subquestionpoints{15}
+\textbf{[Coding Problem] K-Means Compression Implementation.}
+First let us \emph{look} at our data. From the \texttt{src/k\_means/} directory, open an interactive Python prompt, and type
+%
+\begin{center}
+  \texttt{from matplotlib.image import imread; import matplotlib.pyplot as plt;}
+\end{center}
+%
+and run \texttt{A = imread(`peppers-large.tiff')}. Now, \texttt{A} is a ``three dimensional matrix,'' and \texttt{A[:,:,0]}, \texttt{A[:,:,1]} and \texttt{A[:,:,2]} are 512x512 arrays that respectively contain the red, green, and blue values for each pixel. Enter \texttt{plt.imshow(A); plt.show()} to display the image.
+
+Since the large image has 262,144 pixels and would take a while to cluster, we will instead run vector quantization on a smaller image. Repeat (a) with \texttt{peppers-small.tiff}.
+
+
+Next we will implement image compression in the file \texttt{src/k\_means/k\_means.py} which has some starter code. Treating each pixel's $(r, g, b)$ values as an element of $\Re^3$, implement K-means with 16 clusters on the pixel data from this smaller image, iterating (preferably) to convergence, but in no case for less than 30 iterations. For initialization, set each cluster centroid to the $(r, g, b)$-values of a randomly chosen pixel in the image.
+
+Take the image of \texttt{peppers-large.tiff}, and replace each pixel's $(r, g, b)$ values with the value of the closest cluster centroid from the set of centroids computed with \texttt{peppers-small.tiff}. Visually compare it to the original image to verify that your implementation is reasonable. \textbf{Include in your write-up a copy of this compressed image alongside the original image.}
+

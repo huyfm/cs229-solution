@@ -1,0 +1,33 @@
+\item \subquestionpoints{10} Implement your approach by completing the
+\texttt{initial\_state}, \texttt{predict}, and \texttt{update\_state} methods
+of \texttt{src/perceptron/perceptron.py}.
+
+
+We provide three functions to be used as kernel, a dot-product kernel defined as:
+\begin{align}
+	K(x,z) = x^\top z,
+\end{align}
+a
+radial basis function (RBF) kernel, defined as:
+\begin{align}
+K(x,z) = \exp \left (-\frac{\|x-z\|_2^2}{2\sigma^2}\right), 
+\end{align}
+and finally the following function:
+\begin{align}
+K(x,z) = \begin{cases}
+	 -1 & x=z \\
+	 0 & x\neq z
+	\end{cases}
+\end{align}
+\sloppy Note that the last function is not a kernel function (since its corresponding matrix is not a PSD matrix).
+However, we are still interested to see what happens when the kernel is invalid.
+%
+ Run \texttt{src/perceptron/perceptron.py} to train
+kernelized perceptrons on \texttt{src/perceptron/train.csv}. The code will then test
+the perceptron on \texttt{src/perceptron/test.csv} and save the resulting
+predictions in the \texttt{src/perceptron/} folder. Plots will also be saved in
+\texttt{src/perceptron/}.
+
+
+Include the three plots (corresponding to each of the kernels) in your writeup,
+and indicate which plot belongs to which function.

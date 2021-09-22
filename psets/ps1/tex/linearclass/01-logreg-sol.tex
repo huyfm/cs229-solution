@@ -1,0 +1,46 @@
+\begin{answer}
+We explicitly replace $h(x^{(i)}) = g(z^{(i)})$ where $z^{(i)} = \theta^{T} x$. Compute the gradient of the cost function $J(\theta)$, we have:
+%
+\begin{align}
+	\nabla J(\theta) 
+	&= \frac{1}{n} \sum \limits_{i = 1}^{n} \left(-y^{(i)} \nabla_{\theta}\log(g(z^{(i)})) - (1 - y^{(i)}) \nabla_{\theta}\log(1 - g(z^{(i)}))\right) \\
+	&= \frac{1}{n} \sum \limits_{i = 1}^{n} \left(-y^{(i)}(1 - g(z^{(i)})) + (1 - y^{(i)}) y^{(i)} x^{(i)}\right) \\
+	&= \frac{1}{n} \sum \limits_{i = 1}^{n} (g(z^{(i)}) - y^{(i)}) x^{(i)}
+\end{align}
+%
+Now, take the second derivative of the gradient, we obtain the hessian matrix:
+%
+\begin{align}
+	H(J)(\theta) 
+	= \frac{1}{n} \sum \limits_{i = 1}^{n} g(z^{(i)})(1 - g(z^{(i)})) x^{(i)} (x^{(i)})^T
+\end{align}
+%
+For any vector $z \in \mathbb{R}^{d + 1}$ where $d$ is the number of features and we add to it the intercept term. Let's consider:
+%
+\begin{align}
+	z^{T} H(J)(\theta) z
+	&= \frac{1}{n} \sum \limits_{i = 1}^{n} h(x^{(i)})(1 - h(x^{(i)})) (z^{T} x^{(i)})^2
+\end{align}
+%
+All the terms are non-negative as $h(x^{(i)})$ is a probability and the square is non-negative. This implies that $z^{T} H(J)(\theta) z \ge 0$ for all vector $z \in \mathbb{R}^{d + 1}$, hence $H(J)(\theta) \succeq 0$. \\
+\end{answer}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

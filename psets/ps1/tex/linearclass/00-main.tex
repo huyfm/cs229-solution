@@ -1,0 +1,69 @@
+\item \points{40} {\bf Linear Classifiers (logistic regression and GDA)}
+
+In this problem, we cover two probabilistic linear classifiers we have
+covered in class so far. First, a discriminative linear classifier: logistic
+regression. Second, a generative linear classifier: Gaussian discriminant
+analysis (GDA). Both the algorithms find a linear decision boundary that
+separates the data into two classes, but make different assumptions. Our goal
+in this problem is to get a deeper understanding of the similarities and
+differences (and, strengths and weaknesses) of these two algorithms.
+
+For this problem, we will consider two datasets, along with starter codes provided in the following
+files:
+\begin{center}
+\begin{itemize} %[label=\roman*.]
+	\item \url{src/linearclass/ds1_{train,valid}.csv}
+	\item \url{src/linearclass/ds2_{train,valid}.csv}
+        \item \url{src/linearclass/logreg.py}
+        \item \url{src/linearclass/gda.py}
+\end{itemize}
+\end{center}
+Each file contains $\nexp$ examples, one example $(x^{(i)}, y^{(i)})$ per row.
+In particular, the $i$-th row contains columns $x^{(i)}_1\in\Re$,
+$x^{(i)}_2\in\Re$, and $y^{(i)}\in\{0, 1\}$. In the subproblems that follow, we
+will investigate using logistic regression and Gaussian discriminant analysis
+(GDA) to perform binary classification on these two datasets.
+
+\begin{enumerate}
+	\input{linearclass/01-logreg}
+        \ifnum\solutions=1 {
+            \input{linearclass/01-logreg-sol}
+        } \fi
+
+	\input{linearclass/02-solve-logreg}
+        \ifnum\solutions=1 {
+            \input{linearclass/02-solve-logreg-sol}
+        } \fi
+
+
+	\input{linearclass/03-gda}
+        \ifnum\solutions=1 {
+            \input{linearclass/03-gda-sol}
+        }\fi
+
+	\input{linearclass/04-gda-ll}
+        \ifnum\solutions=1 {
+            \input{linearclass/04-gda-ll-sol}
+        } \fi
+
+	\input{linearclass/05-solve-gda}
+        \ifnum\solutions=1 {
+            \input{linearclass/05-solve-gda-sol}
+        } \fi
+
+	\input{linearclass/06-plot-ds1}
+        \ifnum\solutions=1 {
+            \input{linearclass/06-plot-ds1-sol}
+        } \fi
+
+	\input{linearclass/07-plot-ds2}
+        \ifnum\solutions=1{
+            \input{linearclass/07-plot-ds2-sol}
+        }\fi
+
+	\input{linearclass/08-transform}
+        \ifnum\solutions=1{
+            \input{linearclass/08-transform-sol}
+        }\fi
+
+\end{enumerate}

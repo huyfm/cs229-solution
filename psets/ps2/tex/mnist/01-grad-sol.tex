@@ -1,0 +1,25 @@
+\begin{answer}
+For an input example $x^{(i)}$ of class $l$, the loss function:
+\begin{align}
+	\text{CE}(y^{(i)}, \hat{y}^{(i)}) 
+	&= - \sum \limits_{k=1}^{K} y^{(i)}_{k} \log\hat{y}^{(i)}_{k} \\
+	&= - \log\hat{y}^{(i)}_{l} \\
+	&= - \log \left( \frac{\exp(z^{(i)}_l)}{\sum_{k=1}^K \exp(z^{(i)}_k)} \right) \\
+	&= \log \left( \sum_{k=1}^K \exp(z^{(i)}_k) \right) - z^{(i)}_l
+\end{align}
+Consider each component $j$ of the gradient, when $j = l$ we have:
+\begin{align}
+	\frac{\partial \text{CE}(y^{(i)}, \hat{y}^{(i)})}{\partial z^{(i)}_l} 
+	&= \frac{\exp(z^{(i)}_l)}{\sum_{k=1}^K \exp(z^{(i)}_k)} - 1
+	= \hat{y}^{(i)}_l - y^{(i)}_l
+\end{align}
+When $j \ne l$, then:
+\begin{align}
+	\frac{\partial \text{CE}(y^{(i)}, \hat{y}^{(i)})}{\partial z^{(i)}_j}
+	&= \frac{\exp(z^{(i)}_j)}{\sum_{k=1}^K \exp(z^{(i)}_k)}
+	= \hat{y}^{(i)}_j - y^{(i)}_j \text{ (as $y^{(i)}_j = 0$)}
+\end{align}
+These imply that $\nabla_{z^{(i)}} \mathrm{CE}(y^{(i)}, \hat{y}^{(i)}) = \hat{y}^{(i)} - y^{(i)}$. \\
+\end{answer}
+   
+  

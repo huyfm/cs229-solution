@@ -1,0 +1,13 @@
+\begin{answer}
+We have:
+\begin{align}
+	D_{KL}(P\|Q)
+	&= \mathbb{E}_{X \sim P} \left[ - \log \frac{Q(X)}{P(X)} \right] \\ 
+	&\ge - \log \mathbb{E}_{X \sim P} \left[ \frac{Q(X)}{P(X)} \right] \\
+	&= - \log \sum_x P(x) \frac{Q(x)}{P(x)} \\
+	&= - \log \sum_x Q(x) \\
+	&= - \log (1) \\
+	&= 0
+\end{align}
+In line $(2)$, we applied the Jensen's inequality for the strictly convex function $- \log(\cdot)$. The inequality holds with equality  if and only if $\dfrac{Q(X)}{P(X)}$ is a constant almost surely. This implies that $\dfrac{Q(X)}{P(X)} = \text{ a constant}$ for $x \in$ the support of $X$, which implies $P = Q$. \\
+\end{answer}

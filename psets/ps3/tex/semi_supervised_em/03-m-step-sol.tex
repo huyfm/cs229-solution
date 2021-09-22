@@ -1,0 +1,34 @@
+\begin{answer}
+In the M-step, we re-estimate the model parameters $\mu_j$'s, $\Sigma_j$'s and $\phi_j$'s, $j\in\{1,\dots,k\}$ so as to maximize the log likelihood function:
+$$ \sum_{i=1}^{n}\sum_{j=1}^k w^{(i)}_j \log \frac{p(x^{(i)},z^{(i)}=j;\theta)}{w^{(i)}_j} + \alpha\sum_{i=1}^{\tilde{n}}\log p(\tilde{x}^{(i)},\tilde{z}^{(i)};\theta) \\ $$
+which is the same as maximizing (after removing constant terms):
+$$ \sum_{i=1}^{n}\sum_{j=1}^k w^{(i)}_j\log p(x^{(i)},z^{(i)}=j;\theta) + \alpha\sum_{i=1}^{\tilde{n}}\sum_{j=1}^k 1\{\tilde{z}^{(i)}\} \log p(\tilde{x}^{(i)},\tilde{z}^{(i)};\theta) $$
+Append the labeled dataset to the unlabeled dataset, we get the entire training set of $n+\tilde{n}$ examples $(x^{(i)},z^{(i)})$, of which the first n are unlabeled and the  remaining $\tilde{n}$ indexed by $\{n+1,\dots,n+\tilde{n}\}$ are labeled. Let's also denote for labeled examples $w^{(i)}_j = \alpha \cdot 1\{z^{(i)}=j\}$, $i\in \{n,\dots, n+\tilde{n}\}$. Now, the objective can be re-written as:
+\begin{align*}
+	&\sum_{i=1}^{n}\sum_{j=1}^k w^{(i)}_j\log p(x^{(i)},z^{(i)}=j;\theta) + \sum_{i=n+1}^{n+\tilde{n}}\sum_{j=1}^k w^{(i)}_j\log p(x^{(i)},z^{(i)}=j;\theta) \\ 
+	&= \sum_{i=1}^{n+\tilde{n}}\sum_{j=1}^k w^{(i)}_j\log p(x^{(i)},z^{(i)}=j;\theta)
+\end{align*}
+This is the same as the objective we need to maximize in the M-step of the classical GMM model (up to additive constants). Similar to what has been done in the lecture note, we can derive the update rule as follows:
+\begin{align*}
+	\phi_j &= \frac{1}{n} \sum_{i=1}^n w^{(i)}_j, \\
+	\mu_j &= \frac{\sum_{i=1}^n w^{(i)}_j x^{i}}{\sum_{i=1}^n w^{(i)}_j}, \\
+	\Sigma_j &= \frac{\sum_{i=1}^{n} w^{(i)}_j (x^{(i)}-\mu_j)(x^{(i)}-\mu_j)^T}{\sum_{i=1}^n w^{(i)}_j}
+\end{align*}
+Note that $w^{(i)}_j$ is computed as a conditional probability in the E-step for $i=1,\dots,n$ and is set to $\alpha \cdot 1\{z^{(i)}=j\}$ for $i=n+1,\dots,n+\tilde{n}$. \\
+\end{answer}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

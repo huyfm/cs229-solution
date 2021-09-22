@@ -1,0 +1,27 @@
+\item \subquestionpoints{10} \textbf{Coding problem}
+
+Consider a website that wants to predict its
+daily traffic. The website owners have collected a dataset of past traffic to
+their website, along with some features which they think are useful in
+predicting the number of visitors per day. The dataset is split into
+train/valid sets and the starter code is provided in the following files:
+\begin{center}
+\begin{itemize}
+\item 	\url{src/poisson/{train,valid}.csv}
+\item   \url{src/poisson/poisson.py}
+\end{itemize}
+\end{center}
+We will apply Poisson regression to model the number of visitors per day.
+Note that applying Poisson regression in particular assumes that the data
+follows a Poisson distribution whose natural parameter is a linear
+combination of the input features (\emph{i.e.,} $\eta = \theta^T x$).
+In \texttt{src/poisson/poisson.py}, implement Poisson regression for this dataset
+and use \emph{full batch gradient ascent} to maximize the log-likelihood of $\theta$. For the
+stopping criterion, check if the change in parameters has a norm smaller than
+a small value such as $10^{-5}$.
+
+Using the trained model, predict the expected counts for the \textbf{validation set}, and
+create a scatter plot between the true counts vs predicted counts (on the
+validation set). In the scatter plot, let x-axis be the true count and y-axis
+be the corresponding predicted expected count. Note that the true counts
+are integers while the expected counts are generally real values.

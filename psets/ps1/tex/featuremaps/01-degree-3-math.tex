@@ -1,0 +1,19 @@
+\item \subquestionpoints{5} {\bf Learning degree-3 polynomials of the input}
+
+Suppose we have a dataset $\{(x^{(i)}, y^{(i)})\}_{i=1}^{\nexp}$ where $x^{(i)}, y^{(i)} \in \mathbb{R}$. We would like to fit a third degree polynomial $h_{\theta}(x) = \theta_3x^3 + \theta_2x^2 + \theta_1x^1 + \theta_0$ to the dataset. The key observation here is that the function $h_{\theta}(x)$ is still linear in the unknown parameter $\theta$, even though it's not linear in the input $x$. This allows us to convert the problem into a linear regression problem as follows. 
+	
+	Let $\phi:\mathbb{R}\rightarrow \mathbb{R}^4$ be a function that transforms the original input $x$ to a $4$-dimensional vector defined as
+	\begin{align}
+	\phi(x) = \left[\begin{array}{c} 1\\ x \\ x^2 \\ x^3 \end{array}\right]\in \mathbb{R}^4 \label{eqn:feature}
+	\end{align}
+	Let $\hat{x}\in \mathbb{R}^4$ be a shorthand for $\phi(x)$, and let $\hat{x}^{(i)} \triangleq \phi(x^{(i)})$ be the transformed input in the training dataset. We construct a new dataset $\{(\phi(x^{(i)}), y^{(i)})\}_{i=1}^{\nexp} = \{(\hat{x}^{(i)}, y^{(i)})\}_{i=1}^{\nexp}$ by replacing the original inputs $x^{(i)}$'s by $\hat{x}^{(i)}$'s.  We see that fitting $h_{\theta}(x) = \theta_3x^3 + \theta_2x^2 + \theta_1x^1 + \theta_0$ to the old dataset is equivalent to fitting a linear function $h_{\theta}(\hat{x}) = \theta_3\hat{x}_3 +  \theta_2\hat{x}_2 + \theta_1\hat{x}_1 + \theta_0$ to the new dataset because 
+	\begin{align}
+	h_\theta(x) =  \theta_3x^3 + \theta_2x^2 + \theta_1x^1 + \theta_0 =  \theta_3 \phi(x)_3 + \theta_2\phi(x)_2 + \theta_1\phi(x)_1 + \theta_0 = \theta^T \hat{x}
+	\end{align}
+		
+	In other words, we can use linear regression on the new dataset to find parameters $\theta_0,\dots, \theta_3$.
+
+	Please write down 1) the objective function $J(\theta)$ of the linear regression problem on the new dataset $\{(\hat{x}^{(i)}, y^{(i)})\}_{i=1}^{\nexp}$ and 2) the update rule of the batch gradient descent algorithm for linear regression on the dataset $\{(\hat{x}^{(i)}, y^{(i)})\}_{i=1}^{\nexp}$. 
+	
+	\textit{Terminology:} 	In machine learning, $\phi$ is often called the feature map which maps the original input $x$ to a new set of variables. To distinguish between these two sets of variables, we will call $x$ the input {\bf attributes}, and call $\phi(x)$ the {\bf features}. (Unfortunately, different authors use different terms to describe these two things. In this course, we will do our best to follow the above convention consistently.)
+

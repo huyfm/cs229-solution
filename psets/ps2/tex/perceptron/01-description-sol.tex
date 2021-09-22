@@ -1,0 +1,18 @@
+\begin{answer}
+Parameter vector $\theta$ is initialized as $\vec{0} = \sum_{i=1}^{n}\beta_j^{(0)} \phi(x^{(j)})$ where $\beta_j^{(0)} = 0$ for all $j=1,\dots,n$. At each iteration $i$, we add some multiple of $\phi(x^{(i)})$ to $\theta$, thus $\theta$ is always a linear combination of training examples and can be written as $\theta = \sum_{i=1}^{n}\beta_j^{(0)} \phi(x^{(j)})$. \\
+Given a new input $x^{(i+1)}$, the prediction
+\begin{align}
+	h_{\theta^{(i)}}(x^{(i+1)}) 
+	&= \sign({\theta^{(i)}}^T \phi(x^{(i+1)})) \\
+	&= \sign \left( \sum \limits_{i=1}^{n} \beta_j^{(0)} \phi(x^{(j)}) \phi(x^{(i+1)})\ \right) \\
+	&= \sign \left( \sum \limits_{i=1}^{n} \beta_j^{(0)} K(x^{(i+1)},x^j) \right)
+\end{align}
+The update rule at $(i+1)^{th}$ iteration:
+\begin{align}
+	\theta^{(i+1)} 
+	&= \theta^{(i)} + \alpha \left( y^{(i+1)} - h_{\theta^{(i)}}(x^{(i+1)}) \phi(x^{(i+1)}) \right) \\
+	&= \sum_{i=1}^{n}\beta_j^{(0)} \phi(x^{(j)}) + \alpha \left( y^{(i+1)} - h_{\theta^{(i)}}(x^{(i+1)}) \phi(x^{(i+1)}) \right) \\
+	&= \sum_{i\ne (i+1)}^{n}\beta_j^{(0)} \phi(x^{(j)}) + \left[ \beta_{i+1}^{(i)} + \alpha \left( y^{(i+1)} - h_{\theta^{(i)}}(x^{(i+1)}) \right) \right] \phi(x^{(i+1)}) 
+\end{align}
+All coefficients stay the same except for $\beta_{i+1}^{(i+1)}$ which needs to be updated according to the formula $\beta_{i+1}^{(i+1)} = \beta_{i+1}^{(i)} + \alpha \left( y^{(i+1)} - h_{\theta^{(i)}}(x^{(i+1)}) \right)$. \\
+\end{answer}

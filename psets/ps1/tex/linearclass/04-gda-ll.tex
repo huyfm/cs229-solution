@@ -1,0 +1,24 @@
+\item \subquestionpoints{7} Given the dataset, we claim that the maximum
+  likelihood estimates of the parameters are given by
+  \begin{eqnarray*}
+    \phi &=& \frac{1}{\nexp} \sum_{i=1}^\nexp 1\{y^{(i)} = 1\} \\
+\mu_{0} &=& \frac{\sum_{i=1}^\nexp 1\{y^{(i)} = {0}\} x^{(i)}}{\sum_{i=1}^\nexp
+1\{y^{(i)} = {0}\}} \\
+\mu_1 &=& \frac{\sum_{i=1}^\nexp 1\{y^{(i)} = 1\} x^{(i)}}{\sum_{i=1}^\nexp 1\{y^{(i)}
+= 1\}} \\
+\Sigma &=& \frac{1}{\nexp} \sum_{i=1}^\nexp (x^{(i)} - \mu_{y^{(i)}}) (x^{(i)} -
+\mu_{y^{(i)}})^T
+  \end{eqnarray*}
+  The log-likelihood of the data is
+  \begin{eqnarray*}
+\ell(\phi, \mu_{0}, \mu_1, \Sigma) &=& \log \prod_{i=1}^\nexp p(x^{(i)} , y^{(i)};
+\phi, \mu_{0}, \mu_1, \Sigma) \\
+&=& \log \prod_{i=1}^\nexp p(x^{(i)} | y^{(i)}; \mu_{0}, \mu_1, \Sigma) p(y^{(i)};
+\phi).
+  \end{eqnarray*}
+By maximizing $\ell$ with respect to the four parameters,
+prove that the maximum likelihood estimates of $\phi$, $\mu_{0}, \mu_1$, and
+$\Sigma$ are indeed as given in the formulas above.  (You may assume that there
+is at least one positive and one negative example, so that the denominators in
+the definitions of $\mu_{0}$ and $\mu_1$ above are non-zero.)
+

@@ -1,0 +1,10 @@
+\item \points{5} 
+
+%For a single input example $x^{(i)}$ with one-hot label vector $y^{(i)}$, show that $$\nabla_{z^{(i)}} \mathrm{CE}(y^{(i)}, \hat{y}^{(i)}) = \nabla_{z^{(i)}} \mathrm{CE}(y^{(i)}, \mathrm{softmax}(z^{(i)}) ) = \hat{y}^{(i)} - y^{(i)} \in \mathbb{R}^K$$
+For a single input example $x^{(i)}$ with one-hot label vector $y^{(i)}$, show that $$\nabla_{z^{(i)}} \mathrm{CE}(y^{(i)}, \hat{y}^{(i)}) = \hat{y}^{(i)} - y^{(i)} \in \mathbb{R}^K$$
+
+where $\zsi \in \mathbb{R}^K$ is the input to the softmax function, i.e. $$\hat{y}^{(i)} = \mathrm{softmax}(\zsi)$$
+
+(Note: in deep learning, $\zsi$ is sometimes referred to as the "logits".)
+
+\textbf{Hint:} To simplify your answer, it might be convenient to denote the true label of $x^{(i)}$ as $l \in \{1,\dots,K\}$. Hence $l$ is the index such that that $y^{(i)} = [0,...,0,1,0,...,0]^\top$ contains a single 1 at the $l$-th position. You may also wish to compute $\displaystyle \frac{\partial \mathrm{CE}(y^{(i)}, \hat{y}^{(i)})}{\partial z^{(i)}_j}$ for $j\neq l$ and $j=l$ separately.

@@ -1,0 +1,45 @@
+\item \points{15} {\bf Logistic Regression: Training stability}
+
+In this problem, we will be delving deeper into the workings of logistic
+regression. The goal of this problem is to help you develop your skills
+debugging machine learning algorithms (which can be very different from
+debugging software in general).
+
+We have provided an implementation of logistic regression in
+\texttt{src/stability/stability.py}, and two labeled datasets $A$ and $B$ in
+\texttt{src/stability/ds1\_a.csv} and \texttt{src/stability/ds1\_b.csv}.
+
+Please do not modify the code for the logistic regression training algorithm
+for this problem. First, run the given logistic regression code to train two
+different models on $A$ and $B$. You can run the code by simply executing
+\texttt{python stability.py} in the \texttt{src/stability} directory.
+
+\begin{enumerate}
+
+  \input{stability/01-a-vs-b}
+
+\ifnum\solutions=1 {
+  \input{stability/01-a-vs-b-sol}
+} \fi
+
+  \input{stability/02-unstable}
+
+\ifnum\solutions=1 {
+  \input{stability/02-unstable-sol}
+} \fi
+
+
+  \input{stability/03-modifications}
+
+\ifnum\solutions=1 {
+  \input{stability/03-modifications-sol}
+} \fi
+
+
+  \input{stability/04-svm}
+
+\ifnum\solutions=1 {
+  \input{stability/04-svm-sol}
+} \fi
+
+\end{enumerate}

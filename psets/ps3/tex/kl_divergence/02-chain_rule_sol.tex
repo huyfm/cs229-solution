@@ -1,0 +1,12 @@
+\begin{answer}
+Derive from the left-hand side:
+\begin{align}
+	&D_{KL}(P(X|Y)||Q(X|Y)) \\
+	&= \sum_x \sum_y P(x,y) \log \frac{P(x,y)}{Q(x,y)} \\
+	&= \sum_x \sum_y P(x,y) \log \frac{P(x)Q(y|x)}{Q(x)Q(y|x)} \\
+	&= \sum_x \sum_y P(x,y) \log \frac{P(x)}{Q(x)} + \sum_x \sum_y P(x,y) \log \frac{P(y|x)}{Q(y|x)} \\
+	&= \sum_x \sum_y P(x,y) \log \frac{P(x)}{Q(x)} + \sum_y \sum_x P(y)P(x|y) \log \frac{P(y|x)}{Q(y|x)} \\
+	&= \sum_x P(x) \log \frac{P(x)}{Q(x)} + \sum_y P(y) \sum_x P(x|y) \log \frac{P(y|x)}{Q(y|x)} \\
+	&= \KL(P(X)\|Q(X)) + \KL(P(Y|X)\|Q(Y|X))
+\end{align}
+\end{answer}

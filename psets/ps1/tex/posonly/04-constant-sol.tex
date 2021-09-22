@@ -1,0 +1,12 @@
+\begin{answer}
+We have that:
+\begin{align}
+	p(y^{(i)} = 1|x^{(i)})
+	&= \begin{aligned}[t]
+	& p(t^{(i)} = 1|x^{(i)}) p(y^{(i)} = 1|t^{(i)} = 1, x^{(i)}) \\
+	& + p(t^{(i)} = 0|x^{(i)}) p(y^{(i)} = 1|t^{(i)} = 0, x^{(i)}) \\
+	\end{aligned} \\
+	&= \alpha \cdot p(t^{(i)} = 1|x^{(i)})	
+\end{align}
+Hence, $p(t^{(i)} = 1\mid x^{(i)}) = 1/\alpha \cdot p(y^{(i)} = 1\mid x^{(i)})$. \\
+\end{answer}

@@ -1,0 +1,35 @@
+\item \points{25} {\bf Poisson Regression}
+
+In this question we will construct another kind of a commonly used GLM, which is called Poisson Regression. In a GLM, the choice of the exponential family distribution is based on the kind of problem at hand. If we are solving a classification problem, then we use an exponential family distribution with support over discrete classes (such as Bernoulli, or Categorical). Simiarly, if the output is real valued, we can use Gaussian or Laplace (both are in the exponential family). Sometimes the desired output is to predict counts, for e.g., predicting the number of emails expected in a day, or the number of customers expected to enter a store in the next hour, etc. based on input features (also called covariates). You may recall that a probability distribution with support over integers (i.e. counts) is the Poisson distribution, and it also happens to be in the exponential family.
+
+In the following sub-problems, we will start by showing that the Poisson distribution is in the exponential family, derive the functional form of the hypothesis, derive the update rules for training models, and finally using the provided dataset train a real model and make predictions on the test set.
+
+\begin{enumerate}
+	\input{poisson/01-exponential}
+
+\ifnum\solutions=1{
+  \input{poisson/01-exponential-sol}
+}\fi
+
+	\input{poisson/02-response-fn}
+
+
+\ifnum\solutions=1{
+	\input{poisson/02-response-fn-sol}
+}\fi
+
+	\input{poisson/03-gd-update}
+
+
+\ifnum\solutions=1{
+  \input{poisson/03-gd-update-sol}
+}\fi
+
+	\input{poisson/04-regression}
+
+
+\ifnum\solutions=1 {
+  \input{poisson/04-regression-sol}
+} \fi
+
+\end{enumerate}

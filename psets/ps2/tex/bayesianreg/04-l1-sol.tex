@@ -1,0 +1,12 @@
+\begin{answer}
+In this case, our model is $\vec{y} = X\theta + \vec{\epsilon}$ where $ \vec{\epsilon} \sim \mathcal{N}(0,\sigma^2 I) $ and $ \theta_i \sim \textit{Laplace}(0,b) $ for $i=1,\dots,n$. As before, $\vec{y}|X,\theta \sim \mathcal{N}(X\theta,\sigma^2 I)$ and the density $p(\theta_i) = \frac{1}{2b} \exp\left( -\frac{|\theta_i|}{b} \right)$. We have:
+\begin{align}
+	\theta_{\text{MAP}}
+	&= \arg\min_{\theta} -\log(p(\theta) p(\vec{y}|x,\theta)) \\
+	&= \arg\min_{\theta} -\log p(\vec{y}|x,\theta) - \log \prod_{i=1}^{d} p(\theta_i) \\
+	&= \arg\min_{\theta} -\log \left[ \frac{1}{(2\pi)^{d/2}|\sigma^2 I|^{1/2}} \exp \left( -\frac{\|\vec{y} - X\theta\|_2^2}{2\sigma^2} \right) \right] - \sum_{i=1}^{d} \log \left( \frac{1}{2b} \exp\left( -\frac{|\theta_i|}{b} \right) \right) \\
+	&= \arg\min_{\theta} \frac{\|\vec{y} - X\theta\|_2^2}{2\sigma^2} + \sum_{i=1}^{d} \frac{|\theta_i|}{b} \\
+	&= \arg\min_{\theta} \|\vec{y} - X\theta\|_2^2 + \frac{2\sigma^2}{b} \|\theta\|_1
+\end{align}
+Then, $\gamma = 2\sigma^2/b$. \\
+\end{answer}

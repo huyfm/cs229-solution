@@ -1,0 +1,8 @@
+\item \subquestionpoints{5} 
+Show that for any example, the probability that true label $t^{(i)}$ is positive is $1/\alpha$ times  the probability that the partial label is positive. 
+That is, show that
+\begin{align}p(t^{(i)} = 1\mid x^{(i)}) = \frac{1}{\alpha}\cdot p(y^{(i)} = 1\mid x^{(i)})\label{eqn:3} \end{align}
+
+Note that the equation above suggests that if we know the value of $\alpha$, then we can convert a function $h(\cdot)$ that approximately predicts the probability $h(x^{(i)}) \approx p(y^{(i)}=1\mid x^{(i)})$ into a function that approximately predicts $p(t^{(i)} = 1\mid x^{(i)}) $ by multiplying the factor $1/\alpha$. 
+
+

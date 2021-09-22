@@ -1,0 +1,19 @@
+\item \subquestionpoints{5} \textbf{Coding problem: The naive method on partial labels}
+
+We now consider the case where the $t$-labels are unavailable, so you only have
+access to the $y$-labels at training time. Extend your code in
+\texttt{src/posonly/posonly.py} to re-train the classifier (still using $x_1$ and
+$x_2$ as input features), but using the $y$-labels only. Output the predictions
+on the \textbf{test set} to the appropriate file (as described in the code comments).
+
+
+Create a plot to visualize the test set with $x_1$ on the horizontal axis and $x_2$ on
+the vertical axis. Use different symbols for examples $x^{(i)}$ with true label $t^{(i)} = 1$ (even though we only
+used the $y^{(i)}$ labels for training, use the true $t^{(i)}$ labels for plotting)
+than those with $t^{(i)} = 0$. On the same figure, plot the decision boundary obtained
+by your model (i.e, line corresponding to model's predicted probability = 0.5) in red color. Include
+this plot in your writeup.
+
+
+Note that the algorithm should learn a function $h(\cdot)$ that approximately predicts the probability $p(y^{(i)}=1\mid x^{(i)})$. Also note that we expect it to perform poorly on predicting the probability of interest, namely $p(t^{(i)}=1\mid x^{(i)})$.
+

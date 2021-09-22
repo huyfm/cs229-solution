@@ -1,0 +1,8 @@
+\item \subquestionpoints{5} \textbf{Gaussian source}
+
+For this sub-question, we assume sources are distributed according to a standard normal distribution, i.e $s_j \sim \mathcal{N}(0,1), j=\{1,\ldots,\di\}.$ The log-likelihood of our unmixing matrix, as described in the notes, is
+
+$$\ell(W) = \sum_{i=1}^\nexp\left(\log|W| + \sum_{j=1}^\di \log g'(w_j^Tx^{(i)})\right),$$ where $g$ is the cumulative distribution function, and $g'$ is the probability density function of the source distribution (in this sub-question it is a standard normal distribution). Whereas in the notes we derive an update rule to train $W$ iteratively, for the cause of Gaussian distributed sources, we can analytically reason about the resulting $W$.
+
+Try to derive a closed form expression for $W$ in terms of $X$ when $g$ is the standard normal CDF. Deduce the relation between $W$ and $X$ in the simplest terms, and highlight the ambiguity (in terms of rotational invariance) in computing $W$.
+

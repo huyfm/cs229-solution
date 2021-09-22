@@ -1,0 +1,18 @@
+\begin{answer}
+Our model for the whole training set can be written effectively as $\vec{y} = X\theta + \vec{\epsilon}$ where $ \vec{\epsilon} \sim \mathcal{N}(0,\sigma^2 I) $ and $ \theta \sim \mathcal{N}(0,\eta^2 I) $. Then, $\vec{y}|X,\theta \sim \mathcal{N}(X\theta,\sigma^2 I)$. Using the result from (b), we have:
+\begin{align}
+	\theta_{\text{MAP}}
+	&= \arg\min_{\theta} -\log p(\vec{y}|x,\theta) + \frac{\|\theta\|_2^2}{2\eta^2} \\
+	&= \arg\min_{\theta} -\log \left[ \frac{1}{(2\pi)^{d/2}|\sigma^2 I|^{1/2}} \exp \left( -\frac{\|\vec{y} - X\theta\|_2^2}{2\sigma^2} \right) \right] + \frac{\|\theta\|_2^2}{2\eta^2} \\
+	&= \arg\min_{\theta} \frac{\|\vec{y} - X\theta\|_2^2}{2\sigma^2} + \frac{\|\theta\|_2^2}{2\eta^2} \\
+	&= \arg\min_{\theta} \|\vec{y} - X\theta\|_2^2 + \frac{\sigma^2}{\eta^2} \|\theta\|^2_2
+\end{align}
+Let $J(\theta)$ be the above objective function. To minimize $J(\theta)$, we compute the gradient of $J(\theta)$ w.r.t. $\theta$ and set it to 0. We have:
+\begin{align}
+	\nabla J(\hat\theta) 
+	&= 2X^T(X\hat\theta - \vec{y}) + \frac{2\sigma^2}{\eta^2} \hat\theta \\
+	&= \left( X^TX + \frac{\sigma^2}{\eta^2} I \right) \hat\theta - X^T \vec{y} \\
+	&= 0
+\end{align}
+This implies that $\hat\theta_{\text{MAP}} = \left( X^TX + \frac{\sigma^2}{\eta^2} I \right)^{-1} X^T \vec{y}$. \\
+\end{answer}
