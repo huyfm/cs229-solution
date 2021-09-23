@@ -103,7 +103,8 @@ def initialize_mdp_data(num_states):
     """
     transition_counts = np.zeros((num_states, 2, num_states))
     transition_probs = np.ones((num_states, 2, num_states)) / num_states
-    #Index zero is count of rewards being -1 , index 1 is count of total num state is reached
+    # Index zero is count of rewards being -1 , index 1 is count of the number 
+    # of times a state is reached
     reward_counts = np.zeros((num_states, 2)) 
     reward = np.zeros(num_states)
     value = np.random.rand(num_states) * 0.1
