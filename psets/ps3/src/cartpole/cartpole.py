@@ -3,10 +3,12 @@ CS 229 Machine Learning
 Question: Reinforcement Learning - The Inverted Pendulum
 """
 from __future__ import division, print_function
+import os
 from env import CartPole, Physics
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.signal import lfilter
+import imageio
 
 """
 Parts of the code (cart and pole dynamics, and the state
@@ -223,16 +225,41 @@ def update_mdp_value(mdp_data, tolerance, gamma):
     while True:
         new_value = reward + gamma * np.max(transition_probs @ value, axis=1)
         it += 1
-        if np.all(np.abs(new_value - value)) < tolerance:
+        if np.all(np.abs(new_value - value) < tolerance):
             mdp_data['value'] = new_value
             break
         value = new_value
     return it == 1
 
 
-def main(plot=True):
+def plot_trial(mdp_data):
+    time = 0
+    cart_pole = CartPole(Physics())
+    state_tuple = (0., 0., 0., 0.)
+    state = cart_pole.get_state(state_tuple)
+    cart_pole.plot_cart(state_tuple, time)
+    files = []
+    
+    while True:
+        time += 1
+        action = choose_action(state, mdp_data)
+        state_tuple = cart_pole.simulate(action, state_tuple)
+        new_state = cart_pole.get_state(state_tuple)
+        cart_pole.plot_cart(state_tuple, time)
+        files.append(f'frame{time}.png')
+        if new_state == mdp_data['num_states'] - 1:
+            break
+        state = new_state
+    
+    with imageio.get_writer('simulation.gif', mode='I') as writer:
+        for filename in files:
+            image = imageio.imread(f'frames/{filename}')
+            writer.append_data(image)
+    
+
+def main(seed, plot_learning=True, plot_simulation=False):
     # Seed the randomness of the simulation so this outputs the same thing each time
-    np.random.seed(0)
+    np.random.seed(seed)
 
     # Simulation parameters
     pause_time = 0.0001
@@ -294,7 +321,7 @@ def main(plot=True):
         # Get the state number corresponding to new state vector
         new_state = cart_pole.get_state(state_tuple)
         if display_started == 1:
-            cart_pole.show_cart(state_tuple, pause_time)
+            cart_pole.show_cart(state_tuple, time)
 
         # reward function to use - do not change this!
         if new_state == NUM_STATES - 1:
@@ -321,18 +348,16 @@ def main(plot=True):
         # when the pole fell and the state must be reinitialized.
         if new_state == NUM_STATES - 1:
             num_failures += 1
-            if num_failures >= max_failures:
+            if num_failures > max_failures:
                 break
             print('[INFO] Failure number {}'.format(num_failures))
             time_steps_to_failure.append(time - time_at_start_of_current_trial)
-            # time_steps_to_failure[num_failures] = time - time_at_start_of_current_trial
             time_at_start_of_current_trial = time
 
-            if time_steps_to_failure[num_failures - 1] > min_trial_length_to_start_display:
-                display_started = 1
+            # if time_steps_to_failure[num_failures - 1] > min_trial_length_to_start_display:
+            #     display_started = 1
 
             # Reinitialize state
-            # x = 0.0
             x = -1.1 + np.random.uniform() * 2.2
             x_dot, theta, theta_dot = 0.0, 0.0, 0.0
             state_tuple = (x, x_dot, theta, theta_dot)
@@ -340,7 +365,7 @@ def main(plot=True):
         else:
             state = new_state
 
-    if plot:
+    if plot_learning:
         # plot the learning curve (time balanced vs. trial)
         log_tstf = np.log(np.array(time_steps_to_failure))
         plt.plot(np.arange(len(time_steps_to_failure)), log_tstf, 'k')
@@ -351,9 +376,14 @@ def main(plot=True):
         plt.plot(x, weights[window:len(log_tstf)], 'r--')
         plt.xlabel('Num failures')
         plt.ylabel('Log of num steps to failure')
-        plt.savefig('./control.png')
+        plt.savefig(f'./learning{seed}.png')
+    
+    if plot_simulation:
+        # Plot a trial (as a gif file) using learned policy
+        plot_trial(mdp_data)
 
     return np.array(time_steps_to_failure)
     
+
 if __name__ == '__main__':
-    main()
+    main(seed=0, plot_simulation=True)

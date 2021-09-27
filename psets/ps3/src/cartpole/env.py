@@ -7,6 +7,7 @@ from math import sin, cos, pi
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
+
 class CartPole:
     def __init__(self, physics):
         self.physics = physics
@@ -152,10 +153,44 @@ class CartPole:
         ax.add_patch(cart)
         ax.add_patch(base)
         x_dot_str, theta_str, theta_dot_str = '\\dot{x}', '\\theta', '\\dot{\\theta}'
-        ax.set_title('x: %.3f, $%s$: %.3f, $%s$: %.3f, $%s$: %.3f'\
-                                %(x, x_dot_str, x_dot, theta_str, theta, theta_dot_str, x))
+        ax.set_title('x: %.3f, $%s$: %.3f, $%s$: %.3f, $%s$: %.3f'
+                     %(x, x_dot_str, x_dot, theta_str, theta, theta_dot_str, x))
         plt.show()
         plt.pause(pause_time)
+        
+    def plot_cart(self, state_tuple, time):
+        """
+        Given the `state_tuple`, plot and save the cart-pole system.
+
+        Parameters
+        ----------
+        state_tuple : tuple
+            Continuous vector of x, x_dot, theta, theta_dot
+        time: int
+            The current time when plotting the system
+
+        Returns
+        -------
+        """
+        x, x_dot, theta, theta_dot = state_tuple
+        X = [x, x + 4*self.length * sin(theta)]
+        Y = [0, 4*self.length * cos(theta)]
+        plt.close('all')
+        fig, ax = plt.subplots(1)
+        ax.set_xlim(-3, 3)
+        ax.set_ylim(-0.5, 3.5)
+        ax.plot(X, Y)
+        cart = patches.Rectangle((x - 0.4, -0.25), 0.8, 0.25,
+                                 linewidth=1, edgecolor='k', facecolor='cyan')
+        base = patches.Rectangle((x - 0.01, -0.5), 0.02, 0.25,
+                                 linewidth=1, edgecolor='k', facecolor='r')
+        ax.add_patch(cart)
+        ax.add_patch(base)
+        x_dot_str, theta_str, theta_dot_str = '\\dot{x}', '\\theta', '\\dot{\\theta}'
+        ax.set_title(f'time: {time:<3d}, ' + 'x: %.3f, $%s$: %.3f, $%s$: %.3f, $%s$: %.3f'
+                     % (x, x_dot_str, x_dot, theta_str, theta, theta_dot_str, x))
+        plt.savefig(f'./frames/frame{time}.png')
+
 
 class Physics:
     gravity = 9.8
