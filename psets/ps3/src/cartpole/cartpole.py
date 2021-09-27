@@ -2,13 +2,14 @@
 CS 229 Machine Learning
 Question: Reinforcement Learning - The Inverted Pendulum
 """
+
 from __future__ import division, print_function
-import os
 from env import CartPole, Physics
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.signal import lfilter
 import imageio
+import shutil
 
 """
 Parts of the code (cart and pole dynamics, and the state
@@ -233,13 +234,14 @@ def update_mdp_value(mdp_data, tolerance, gamma):
 
 
 def plot_trial(mdp_data):
+    """Plot a trial given a learned MDP and policy, return as a gif file."""
     time = 0
     cart_pole = CartPole(Physics())
     state_tuple = (0., 0., 0., 0.)
     state = cart_pole.get_state(state_tuple)
     cart_pole.plot_cart(state_tuple, time)
     files = []
-    
+    # simulate a trial
     while True:
         time += 1
         action = choose_action(state, mdp_data)
@@ -250,11 +252,13 @@ def plot_trial(mdp_data):
         if new_state == mdp_data['num_states'] - 1:
             break
         state = new_state
-    
+    # create gif file
     with imageio.get_writer('simulation.gif', mode='I') as writer:
         for filename in files:
             image = imageio.imread(f'frames/{filename}')
             writer.append_data(image)
+    # remove redundancy
+    shutil.rmtree("frames")
     
 
 def main(seed, plot_learning=True, plot_simulation=False):
