@@ -4,6 +4,7 @@ Question: Reinforcement Learning - The Inverted Pendulum
 """
 
 from __future__ import division, print_function
+import os
 from env import CartPole, Physics
 import matplotlib.pyplot as plt
 import numpy as np
@@ -240,6 +241,7 @@ def plot_trial(mdp_data):
     state_tuple = (0., 0., 0., 0.)
     state = cart_pole.get_state(state_tuple)
     cart_pole.plot_cart(state_tuple, time)
+    os.mkdir('frames')  # contain frames
     files = []
     # simulate a trial
     while True:

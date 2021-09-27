@@ -10,8 +10,8 @@ Take its gradient:
 \end{align}
 Take its hessian:
 \begin{align}
-	H(J)(\theta) &= - \frac{1}{n} \sum \limits_{i = 1}^{n} -a''(\eta) x^{(i)} x^{(i)T} \\
-	&= \frac{1}{n} \sum \limits_{i = 1}^{n} \text{Var}(y^{(i)}|x^{(i)}) x^{(i)} x^{(i)T} \text{ (Use result \eqref{res2} part (a))}
+	H(J)(\theta) &= - \frac{1}{n} \sum \limits_{i = 1}^{n} -a''(\eta) x^{(i)} {x^{(i)}}^T \\
+	&= \frac{1}{n} \sum \limits_{i = 1}^{n} \text{Var}(y^{(i)}|x^{(i)}) x^{(i)} {x^{(i)}}^T && \text{(Use result \eqref{res2} part (a))}
 \end{align}
 For any vector $u \in \mathbb{R}^d$, we have $u^T H(J)(\theta) u = 1/n \sum _{i = 1}^{n} \text{Var}(y^{(i)}|x^{(i)}) (u^T x^{(i)})^2 \ge 0$ as all of variances and squares are non-negative. Therefore, the Hessian of the loss is always PSD, which implies that the NLL loss of GLM is convex. \\
 \end{answer}

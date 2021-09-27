@@ -3,7 +3,7 @@ Consider a single example $x^{(i)}$, we have the objective for this example:
 \begin{align}
 	\ell_i(W) &= \sum_{j=1}^{d} \log p_s(w_j^T x^{(i)}) + \log|W| \\
 	&= \sum_{j=1}^{d} \log\left(\frac{1}{2}\exp(-|w_j^T x^{(i)}|\right) + \log|W| \\
-	&= -d\log(2) - \sum_{j=1}^{d}|w_j^T x^{(i)}| + \log|W| \\
+	&= -d\log(2) - \sum_{j=1}^{d}|w_j^T x^{(i)}| + \log|W|
 \end{align}
 Take its derivative, then:
 \begin{align}

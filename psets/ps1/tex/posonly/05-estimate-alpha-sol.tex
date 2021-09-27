@@ -1,14 +1,15 @@
 \begin{answer}
-	We think of $h(x^{(i)}) = p(y^{(i)} = 1|x^{(i)})$ only as a function of $x^{(i)}$. When $y^{(i)} = 1$, we have that:
+	As being $p(y^{(i)} = 1|x^{(i)})$, we have that:
 \begin{align}
 	h(x^{(i)}) &=
 	\begin{aligned}[t]  
 	& p(t^{(i)} = 1|x^{(i)}) p(y^{(i)} = 1|t^{(i)} = 1, x^{(i)}) \\
 	& + p(t^{(i)} = 0|x^{(i)}) p(y^{(i)} = 1|t^{(i)} = 0, x^{(i)}) \\
 	\end{aligned} \\
-	&= 1 \cdot p(y^{(i)} = 1|t^{(i)} = 1, x^{(i)}) + 0 \cdot p(y^{(i)} = 1|t^{(i)} = 0, x^{(i)}) \\
+	&= p(t^{(i)} = 1|x^{(i)}) \cdot \alpha + p(t^{(i)} = 0|x^{(i)}) \cdot 0 \\
+	&= 1 \cdot \alpha \label{line45} \\
 	&= \alpha
 \end{align}
 %
-In the $2^{nd}$ line, knowing that $y^{(i)}$ already equals 1, $x^{(i)}$ has label 1. As a result, given our critical assumption, $p(t^{(i)} = 1|x^{(i)}) = 1$ and $p(t^{(i)} = 0|x^{(i)}) = 0$. In the conditional universe given that $y^{(i)} = 1$, $h(x^{(i)})$ always takes value $\alpha$, therefore its conditional expectation is $\alpha$. That is, $\mathbb{E}[h(x^{(i)}) | y^{(i)} = 1] = \alpha$. \\
+In line \eqref{line45} knowing that $y^{(i)}$ already equals 1, $x^{(i)}$ has label 1. As a result, given our critical assumption, $p(t^{(i)} = 1|x^{(i)}) = 1$ and $p(t^{(i)} = 0|x^{(i)}) = 0$. In the conditional universe given that $y^{(i)} = 1$, $h(x^{(i)})$ always takes value $\alpha$, therefore its conditional expectation is $\alpha$. That is, $\mathbb{E}[h(x^{(i)}) | y^{(i)} = 1] = \alpha$. \\
 \end{answer}

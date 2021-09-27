@@ -2,7 +2,7 @@
 The log-likelihood function of the data is:
 
 \begin{align}
-	l(\phi, \mu_0, \mu_1, \Sigma)
+	\ell(\phi, \mu_0, \mu_1, \Sigma)
 	&= \log \prod \limits_{i = 1}^{n} p(x^{(i)}|y^{(i)})p(y^{(i)}) \\
 	&= \sum \limits_{i = 1}^{n} (\log p(x^{(i)}|y^{(i)}) \log p(y^{(i)})) \\
 	&= 
@@ -12,10 +12,10 @@ The log-likelihood function of the data is:
 	\end{aligned}
 \end{align}
 
-The maximum likelihood estimate of  $\theta = (\phi, \mu_0, \mu_1, \Sigma)$ are the value which maximizes the log likelihood function. We will solve the equation $\nabla l(\theta) = 0$ in order to obtain them. We have:
+The maximum likelihood estimate of  $\theta = (\phi, \mu_0, \mu_1, \Sigma)$ are the value which maximizes the log likelihood function. We will solve the equation $\nabla \ell(\theta) = 0$ in order to obtain them. We have:
 
 \begin{align}
-	\nabla_{\phi} l(\theta) 
+	\nabla_{\phi} \ell(\theta) 
 	&= \sum \limits_{i = 1}^{n} \left( \frac{y^{(i)}}{\theta} - \frac{1 - y^{(i)}}{1 - \phi} \right)
 	= 0
 \end{align}
@@ -26,33 +26,33 @@ $$\hat{\phi} = \frac{1}{n} \sum \limits_{i = 1}^{n} y^{(i)} = \frac{1}{n} \sum \
 Let's consider now:
 
 \begin{align}
-	\nabla_{\mu_0} l(\theta) &
+	\nabla_{\mu_0} \ell(\theta) &
 	= \nabla_{\mu_0} \left( \sum \limits_{i = 1}^{n} - \frac{1}{2} 1\{y^{(i)} = 0\} (x^{(i)} - \mu_0)^T \Sigma^{-1} (x^{(i)} - \mu_0) \right) \\
 	&= - \Sigma^{-1} \sum \limits_{i = 1}^{n} 1\{y^{(i)} = 0\}(\mu_0 - x^{i})
 \end{align}
 
-Solve the equation $\nabla_{\mu_0} l(\theta) = 0$ gives: $$\widehat{\mu_0} = \frac{ \sum_{i = 1}^{n} 1\{y^{(i)} = 0\}x^{(i)}}{\sum_{i = 1}^{n} 1\{y^{(i)} = 0\}}$$
-Similarly, we also obtain $$\widehat{\mu_1} = \frac{ \sum_{i = 1}^{n} 1\{y^{(i)} = 1\}x^{(i)}}{\sum_{i = 1}^{n} 1\{y^{(i)} = 1\}}$$ when solving the corresponding equation $\nabla_{\mu_1} l(\theta) = 0$.
+Solve the equation $\nabla_{\mu_0} \ell(\theta) = 0$ gives: $$\widehat{\mu_0} = \frac{ \sum_{i = 1}^{n} 1\{y^{(i)} = 0\}x^{(i)}}{\sum_{i = 1}^{n} 1\{y^{(i)} = 0\}}$$
+Similarly, we also obtain $$\widehat{\mu_1} = \frac{ \sum_{i = 1}^{n} 1\{y^{(i)} = 1\}x^{(i)}}{\sum_{i = 1}^{n} 1\{y^{(i)} = 1\}}$$ when solving the corresponding equation $\nabla_{\mu_1} \ell(\theta) = 0$.
 
 Lastly, we compute:
 
 \begin{align}
-	\nabla_{\Sigma} l(\theta) 
+	\nabla_{\Sigma}\ell(\theta) 
 	&= \nabla_{\Sigma} \sum \limits_{i = 1}^{n} \left(- \frac{1}{2}\log |\Sigma| - \frac{1}{2}(x^{(i)} - \mu_{y^{(i)}})^T \Sigma^{-1} (x^{(i)} - \mu_{y^{(i)}}) \right) \\
 	&= \sum \limits_{i = 1}^{n} \left( -\frac{1}{2} \Sigma^{-1} + \frac{1}{2}  \Sigma^{-1} (x^{(i)} - \mu_{y^{(i)}}) (x^{(i)} - \mu_{y^{(i)}})^T \Sigma^{-1} \right) \\
 	&= \frac{1}{2} \Sigma^{-1}\left( \sum \limits_{i = 1}^{n} (x^{(i)} - \mu_{y^{(i)}}) (x^{(i)} - \mu_{y^{(i)}})^T \Sigma^{-1} - n \right)
 \end{align}
 
-Solve the equation $\nabla_{\Sigma} l(\theta) = 0$, we get:
+Solve the equation $\nabla_{\Sigma} \ell(\theta) = 0$, we get:
 $$\widehat\Sigma = \frac{1}{n} \sum \limits_{i = 1}^{n} (x^{(i)} - \mu_{y^{(i)}}) (x^{(i)} - \mu_{y^{(i)}})^T$$
-In the above derivation of $\nabla_{\Sigma} l(\theta)$, we used 2 identities:
+In the above derivation of $\nabla_{\Sigma} \ell(\theta)$, we used 2 identities:
 
 \begin{align}
 \nabla_{\Sigma}\log|\Sigma| &= (\Sigma^{-1})^T \\
 \nabla_{\Sigma} z^T\Sigma^{-1} z &= -\Sigma^{-1} z z^T \Sigma^{-1}, 
 \end{align}
 
-where $z$ is not a function of $\Sigma$. To prove the second indentity, we take the differential:
+where $z$ is not a function of $\Sigma$. To prove the second identity, we take the differential:
 \begin{align}
 	d(z^T \Sigma^{-1} z) 
 	&= d(\text{Tr}[z^T \Sigma^{-1} z]) \\

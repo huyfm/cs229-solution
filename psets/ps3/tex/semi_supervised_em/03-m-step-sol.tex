@@ -10,11 +10,11 @@ Append the labeled dataset to the unlabeled dataset, we get the entire training 
 \end{align*}
 This is the same as the objective we need to maximize in the M-step of the classical GMM model (up to additive constants). Similar to what has been done in the lecture note, we can derive the update rule as follows:
 \begin{align*}
-	\phi_j &= \frac{1}{n} \sum_{i=1}^n w^{(i)}_j, \\
-	\mu_j &= \frac{\sum_{i=1}^n w^{(i)}_j x^{i}}{\sum_{i=1}^n w^{(i)}_j}, \\
-	\Sigma_j &= \frac{\sum_{i=1}^{n} w^{(i)}_j (x^{(i)}-\mu_j)(x^{(i)}-\mu_j)^T}{\sum_{i=1}^n w^{(i)}_j}
+	\phi_j &= \frac{1}{n+\tilde{n}} \sum_{i=1}^{n+\tilde{n}} w^{(i)}_j, \\
+	\mu_j &= \frac{\sum_{i=1}^{n+\tilde{n}} w^{(i)}_j x^{i}}{\sum_{i=1}^{n+\tilde{n}} w^{(i)}_j}, \\
+	\Sigma_j &= \frac{\sum_{i=1}^{n+\tilde{n}} w^{(i)}_j (x^{(i)}-\mu_j)(x^{(i)}-\mu_j)^T}{\sum_{i=1}^{n+\tilde{n}} w^{(i)}_j}
 \end{align*}
-Note that $w^{(i)}_j$ is computed as a conditional probability in the E-step for $i=1,\dots,n$ and is set to $\alpha \cdot 1\{z^{(i)}=j\}$ for $i=n+1,\dots,n+\tilde{n}$. \\
+Note that $w^{(i)}_j$ is computed as a conditional probability in the E-step for $i\in\{1,\dots,n\}$ and is set to $\alpha \cdot 1\{z^{(i)}=j\}$ for $i \in \{n+1,\dots,n+\tilde{n}\}$. \\
 \end{answer}
 
 

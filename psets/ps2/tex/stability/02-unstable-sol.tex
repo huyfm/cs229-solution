@@ -16,13 +16,12 @@ by the hyperplane $\theta^{T} x = 0$. Now, consider a parameter $\theta' = c
 \cdot \theta$. Given an example x, we observe that:
 \begin{itemize}
 	\item If $y=0$, then $\theta^{T} x < 0$ and its loss w.r.t. $\theta'$ is: 
-	$-\log \left(\dfrac{1}{1 + \exp (-c\theta^T x)} \right)$.
+	$-\log \left(\dfrac{1}{1 + \exp (-c\cdot\theta^T x)} \right)$.
 	\item If $y=1$, then $\theta^T x > 0$ and its loss w.r.t. $\theta'$ is: 
-	$-\log \left(1 - \dfrac{1}{1 + \exp (-c\theta^T x)} \right)$.
+	$-\log \left(1 - \dfrac{1}{1 + \exp (-c\cdot\theta^T x)} \right)$.
 \end{itemize}
 As $c \to \infty$, in both cases the losses are strictly decreasing without a 
 bound. And so the total cost is a lower-unbounded convex function. The 
 Gradient Descent will fail to converge to the global minimum since there is not 
-such one. Due to inseparability, dataset A doesn't endure the above trait, the 
-Gradient Descent actually worked nicely. \\
+such one. Due to inseparability, dataset A doesn't endure the above trait, our optimizer actually worked nicely. \\
 \end{answer}

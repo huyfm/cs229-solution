@@ -3,10 +3,10 @@ We have:
 \begin{align}
 	\frac{\partial}{\partial \theta_j} \log p(y^{(i)}|x^{(i)}; \theta) 
 	&= \frac{\partial}{\partial \theta_j} \log \left( \frac{1}{y!} \exp (\eta y - e^{\eta}) \right) \\
-	&= \frac{\partial}{\partial \theta_j} \log \left( \frac{1}{y!} \exp (y \theta^T x - e^{\theta^T x}) \right) \\
-	&= \frac{\partial}{\partial \theta_j} \left( \log \frac{1}{y!} + y \theta^T x - e^{\theta^T x} \right) \\
-	&= (y - e^{\theta^T x}) x_j
+	&= \frac{\partial}{\partial \theta_j} \log \left( \frac{1}{y!} \exp (y \theta^T\xsi - e^{\theta^T\xsi}) \right) \\
+	&= \frac{\partial}{\partial \theta_j} \left( \log \frac{1}{y!} + y \theta^T\xsi - e^{\theta^T\xsi} \right) \\
+	&= (y - e^{\theta^T\xsi}) x_j
 \end{align}
 So, the SGA update rule for this GLM model is:
-$$ \theta_j = \theta_j + \alpha (y - e^{\theta^T x}) x_j, \text{ for all } j. $$ \\
+$$ \theta_j = \theta_j + \alpha (y - e^{\theta^T\xsi}) x_j, \text{ for all } j. $$
 \end{answer}

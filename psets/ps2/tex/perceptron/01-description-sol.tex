@@ -5,7 +5,7 @@ Given a new input $x^{(i+1)}$, the prediction
 	h_{\theta^{(i)}}(x^{(i+1)}) 
 	&= \sign({\theta^{(i)}}^T \phi(x^{(i+1)})) \\
 	&= \sign \left( \sum \limits_{i=1}^{n} \beta_j^{(0)} \phi(x^{(j)}) \phi(x^{(i+1)})\ \right) \\
-	&= \sign \left( \sum \limits_{i=1}^{n} \beta_j^{(0)} K(x^{(i+1)},x^j) \right)
+	&= \sign \left( \sum \limits_{i=1}^{n} \beta_j^{(0)} K(x^{(i+1)},x^{(j)}) \right)
 \end{align}
 The update rule at $(i+1)^{th}$ iteration:
 \begin{align}
