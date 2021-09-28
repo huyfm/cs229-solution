@@ -10,7 +10,7 @@ Note that our weight matrices are transposes of the weights introduced in this s
 \begin{align}
 	& \frac{\partial\mathcal{L}}{\partial z^{[2]}} = \hat{y} - y \\
 	& \frac{\partial\mathcal{L}}{\partial W^{[2]}} = \frac{\partial\mathcal{L}}{\partial z^{[2]}} {a^{[1]}}^T, \frac{\partial\mathcal{L}}{\partial b^{[2]}} = \frac{\partial\mathcal{L}}{\partial z^{[2]}} \\
-	& \frac{\partial\mathcal{L}}{\partial a^{[1]}} = {W^{[2]}}^T \frac{\partial\mathcal{L}}{\partial z^{[2]}}, \frac{\partial\mathcal{L}}{\partial z^{[1]}} = \sigma'(z^{[1]}) \odot \frac{\partial\mathcal{L}}{\partial a^{[1]}} \\
+	& \frac{\partial\mathcal{L}}{\partial a^{[1]}} = {W^{[2]}}^T \frac{\partial\mathcal{L}}{\partial z^{[2]}}, \frac{\partial\mathcal{L}}{\partial z^{[1]}} = \sigma'(z^{[1]}) \odot \frac{\partial\mathcal{L}}{\partial a^{[1]}}\\
 	&\frac{\partial\mathcal{L}}{\partial W^{[1]}} = \frac{\partial\mathcal{L}}{\partial z^{[1]}} x^T, \frac{\partial\mathcal{L}}{\partial b^{[1]}} = \frac{\partial\mathcal{L}}{\partial z^{[1]}}
 \end{align}
 After running the model for 30 epochs, our result is shown in the figure below.

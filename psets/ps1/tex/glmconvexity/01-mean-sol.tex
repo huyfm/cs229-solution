@@ -1,37 +1,37 @@
 \begin{answer}
 We first proof the following lemma: \\
-\textbf{\textit{Lemma:}} \textit{Given a random variable $Y \sim p(y; \eta)$ where $y \in \mathcal{D}$ and let $l(\eta) = \log p(y; \eta)$, we have the following results:}
+\textbf{\textit{Lemma:}} \textit{Given a random variable $Y \sim p(y; \eta)$ where $y \in \mathcal{D}$ and let $\ell(\eta) = \log p(y; \eta)$, we have the following results:}
 \begin{eqnarray}
-	\mathbb{E}[l'(\eta)] &=& 0 \label{res1}\\
-	\mathbb{E}[(l'(\eta))^2] &=& - \mathbb{E}[l''(\eta)] \label{res2}
+	\mathbb{E}[\ell'(\eta)] &=& 0 \label{res1}\\
+	\mathbb{E}[(\ell'(\eta))^2] &=& - \mathbb{E}[\ell''(\eta)] \label{res2}
 \end{eqnarray}
 Let's prove it. We have that:
 \begin{align} 
-	l'(\eta) &= (\log p(y; \eta))' = \frac{p'(y; \eta)}{p(y; \eta)} \\
-	l''(\eta) &= \frac{p''(y; \eta)}{p(y; \eta)} - \frac{(p'(y; \eta))^2}{(p(y; \eta))^2}
+	\ell'(\eta) &= (\log p(y; \eta))' = \frac{p'(y; \eta)}{p(y; \eta)} \\
+	\ell''(\eta) &= \frac{p''(y; \eta)}{p(y; \eta)} - \frac{(p'(y; \eta))^2}{(p(y; \eta))^2}
 \end{align}
 Then, applying the expectation formula we obtain:
 \begin{align}
-	\mathbb{E}[l'(\eta)] &= \int_\mathcal{D} \frac{p'(y; \eta)}{p(y; \eta)} p(y; \eta)dy \\
+	\mathbb{E}[\ell'(\eta)] &= \int_\mathcal{D} \frac{p'(y; \eta)}{p(y; \eta)} p(y; \eta)dy \\
 	&= \int_\mathcal{D} \frac{\partial}{\partial \eta} p(y; \eta) dy \\
 	&= \frac{\partial}{\partial \eta} \int_\mathcal{D} p(y; \eta) dy \\
 	&= \frac{\partial}{\partial \eta} (1) = 0
 \end{align}
-This proves the first result. We now move on to the $2^{nd}$ one, then consider:
+This proves the first result. We now move on to the second one, then consider:
 \begin{align}
-	\text{LHS} &= \mathbb{E}[(l'(\eta))^2] \\
+	\text{LHS} &= \mathbb{E}[(\ell'(\eta))^2] \\
 	&= \int_\mathcal{D} \left( \frac{p'(y; \eta)}{p(y; \eta)} \right)^2 p(y; \eta) dy \\
 	&= \int_\mathcal{D} \frac{(p'(y; \eta))^2}{p(y; \eta)} dy
 \end{align}
 While, look at the RHS we have:
 \begin{align}
-	\text{RHS} &= - \mathbb{E}[l''(\eta)] \\
+	\text{RHS} &= - \mathbb{E}[\ell''(\eta)] \\
 	&= \int_\mathcal{D} \left( \frac{p''(y; \eta)}{p(y; \eta)} - \frac{(p'(y; \eta))^2}{(p(y; \eta))^2} \right) p(y; \eta) dy \\
 	&= - \int_\mathcal{D} p''(y; \eta) dy +  \int_\mathcal{D} \frac{(p'(y; \eta))^2}{p(y; \eta)} dy \\
 	&= 0 + \int_\mathcal{D} \frac{(p'(y; \eta))^2}{p(y; \eta)} dy
 \end{align}
-Therefore, $\text{LHS} = \text{RHS}$, which implies the correctness of the $2^{nd}$ result. Now, we are ready to prove sub-problems $(a)$ and $(b)$.
+Therefore, $\text{LHS} = \text{RHS}$, which implies the correctness of the second result. Now, we are ready to prove sub-problems $(a)$ and $(b)$.
 
 Exponential family random variable $Y$ has a distribution function $p(y; \eta) = b(y) \exp(\eta y - a(\eta))$.
-From the result \eqref{res1}, we have $0 = \mathbb{E}[l'(\eta)] = \mathbb{E}[Y - a'(\eta)] = \mathbb{E}[Y] - a'(\eta)$. Therefore, $\mathbb{E}[Y] = a'(\eta)$. \\
+From the result \eqref{res1}, we have $0 = \mathbb{E}[\ell'(\eta)] = \mathbb{E}[Y - a'(\eta)] = \mathbb{E}[Y] - a'(\eta)$. Therefore, $\mathbb{E}[Y] = a'(\eta)$. \\
 \end{answer}

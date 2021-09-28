@@ -6,12 +6,12 @@ Consider the NLL loss of a general GLM model:
 \end{align}
 Take its gradient:
 \begin{align}
-	\nabla J(\theta) = - \frac{1}{n} \sum \limits_{i = 1}^{n} \left(y^{(i)} x^{(i)} - a'(\eta) x^{(i)} \right)
+	\nabla_{\theta}J(\theta) = - \frac{1}{n} \sum \limits_{i = 1}^{n} \left(y^{(i)} x^{(i)} - a'(\eta) x^{(i)} \right)
 \end{align}
 Take its hessian:
 \begin{align}
 	H(J)(\theta) &= - \frac{1}{n} \sum \limits_{i = 1}^{n} -a''(\eta) x^{(i)} {x^{(i)}}^T \\
 	&= \frac{1}{n} \sum \limits_{i = 1}^{n} \text{Var}(y^{(i)}|x^{(i)}) x^{(i)} {x^{(i)}}^T && \text{(Use result \eqref{res2} part (a))}
 \end{align}
-For any vector $u \in \mathbb{R}^d$, we have $u^T H(J)(\theta) u = 1/n \sum _{i = 1}^{n} \text{Var}(y^{(i)}|x^{(i)}) (u^T x^{(i)})^2 \ge 0$ as all of variances and squares are non-negative. Therefore, the Hessian of the loss is always PSD, which implies that the NLL loss of GLM is convex. \\
+For any vector $u \in \mathbb{R}^d$, we have $u^T H(J)(\theta) u = 1/n \sum _{i = 1}^{n} \text{Var}(y^{(i)}|x^{(i)}) (u^T x^{(i)})^2 \ge 0$ as all of variances and squares are non-negative. Therefore, the hessian of the loss is always positive semi-definite, which implies that the NLL loss of the GLM is convex. \\
 \end{answer}

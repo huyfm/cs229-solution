@@ -9,7 +9,7 @@ Our model for the whole training set can be written effectively as $\vec{y} = X\
 \end{align}
 Let $J(\theta)$ be the above objective function. To minimize $J(\theta)$, we compute the gradient of $J(\theta)$ w.r.t. $\theta$ and set it to 0. We have:
 \begin{align}
-	\nabla J(\hat\theta) 
+	\nabla_{\theta}J(\hat\theta) 
 	&= 2X^T(X\hat\theta - \vec{y}) + \frac{2\sigma^2}{\eta^2} \hat\theta \\
 	&= \left( X^TX + \frac{\sigma^2}{\eta^2} I \right) \hat\theta - X^T \vec{y} \\
 	&= 0
