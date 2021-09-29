@@ -35,7 +35,7 @@ def predict(state, kernel, x_i):
     """
     train_x = state['train_x']
     beta = state['beta']
-    k = np.empty(len(train_x))  # vector contains K(x_j, x_i)
+    k = np.empty(len(train_x))  # kernel vector
     for j, x_j in enumerate(train_x):
         k[j] = kernel(x_j, x_i)
     pred = sign(beta.dot(k))

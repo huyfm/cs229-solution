@@ -69,7 +69,7 @@ def run_em(x, phi, mu, sigma):
     ll = prev_ll = - np.inf
     log_joint = np.empty([n_examples, K])
 
-    for _iter in range(max_iter):
+    for it in range(max_iter):
         # Do E-step
         for j in range(K):
             exponents = ((x - mu[j]) @ LA.inv(sigma[j]) * (x - mu[j])).sum(axis=1)
@@ -81,7 +81,7 @@ def run_em(x, phi, mu, sigma):
         ll = (- n_examples * dim / 2 * np.log(2 * np.pi) 
               + np.sum(logsumexp(log_joint)))
         if np.abs(ll - prev_ll) < eps:
-            print(f'Converged after {_iter + 1} iterations\n'
+            print(f'Converged after {it + 1} iterations\n'
                   f'with ll loss {ll:.2f}\n')
             break
         prev_ll = ll
@@ -113,17 +113,17 @@ def run_semi_supervised_em(x, x_tilde, z_tilde, phi, mu, sigma):
         example x^(i) belonging to the j-th Gaussian in the mixture.
     """
     alpha = 20.  # Weight for supervised objective
-    eps = 1e-3  # Convergence threshold
+    eps = 1e-3   # Convergence threshold
     max_iter = 2000
     n_tilde, dim = x_tilde.shape  # n_tilde: the number of x_tilde's
-    x = np.vstack([x, x_tilde])  # x contains all examples
-    n_examples = len(x)  # total number of examples
+    x = np.vstack([x, x_tilde])   # x contains all examples
+    n_examples = len(x)           # total number of examples
 
     ll = prev_ll = - np.inf
     log_joint = np.empty([n_examples, K])
     w_tilde = alpha * (z_tilde == np.arange(K))
 
-    for _iter in range(max_iter):
+    for it in range(max_iter):
         # Do E-step
         for j in range(K):
             exponents = ((x - mu[j]) @ LA.inv(sigma[j]) * (x - mu[j])).sum(axis=1)
@@ -136,7 +136,7 @@ def run_semi_supervised_em(x, x_tilde, z_tilde, phi, mu, sigma):
               + (logsumexp(log_joint[:-n_tilde])).sum()
               + (w_tilde * log_joint[-n_tilde:]).sum())
         if np.abs(ll - prev_ll) < eps:
-            print(f'Converged after {_iter + 1} iterations\n'
+            print(f'Converged after {it + 1} iterations\n'
                   f'with ll loss {ll:.2f}\n')
             break
         prev_ll = ll

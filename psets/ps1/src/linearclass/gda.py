@@ -51,14 +51,14 @@ class GDA:
             x: Training example inputs. Shape (n_examples, dim).
             y: Training example labels. Shape (n_examples,).
         """
-        # Find phi, mu_0, mu_1, and sigma
+        # Compute phi, mu_0, mu_1, and sigma
         phi = np.mean(y)
         mu0 = (x[y == 0]).mean(axis=0, keepdims=True)
         mu1 = (x[y == 1]).mean(axis=0, keepdims=True)
         mean = np.where(y.reshape(-1, 1), mu1, mu0)
         sigma = (x - mean).T @ (x - mean) / x.shape[0]
         
-        # Write theta in terms of the parameters
+        # Compute theta in terms of the parameters
         self.theta = np.empty(x.shape[1] + 1)
         sigma_inv = np.linalg.inv(sigma)
         mu_diff = (mu1 - mu0).squeeze()

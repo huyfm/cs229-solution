@@ -170,7 +170,8 @@ def backward_prop_regularized(data, labels, params, forward_prop_func, reg):
     return grads
 
 
-def gradient_descent_epoch(train_data, train_labels, learning_rate, batch_size, params, forward_prop_func, backward_prop_func):
+def gradient_descent_epoch(train_data, train_labels, learning_rate, batch_size, 
+                           params, forward_prop_func, backward_prop_func):
     """
     Perform one epoch of gradient descent on the given training data using the provided learning rate.
 

@@ -30,7 +30,6 @@ def main(train_path, valid_path, test_path, save_path):
     output_path_naive = save_path.replace(WILDCARD, 'naive')
     output_path_adjusted = save_path.replace(WILDCARD, 'adjusted')
 
-    # *** START CODE HERE ***
     # Part (a):
     x_train, t_train = util.load_dataset(train_path, 't', add_intercept=True)
     x_test, t_test = util.load_dataset(test_path, 't', add_intercept=True)
