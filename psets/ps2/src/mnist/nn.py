@@ -130,15 +130,15 @@ def backward_prop(data, labels, params, forward_prop_func):
     # forward pass
     A1, preds, loss = forward_prop_func(data, labels, params)
     # backward pass
-    d_Z2 = preds - labels
-    d_W2 = d_Z2.T @ A1 / batch_size
-    d_b2 = np.sum(d_Z2, axis=0) / batch_size
-    d_A1 = d_Z2 @ W2
-    d_Z1 = A1 * (1 - A1) * d_A1
-    d_W1 = d_Z1.T @ data / batch_size
-    d_b1 = np.sum(d_Z1, axis=0) / batch_size
+    dZ2 = preds - labels
+    dW2 = dZ2.T @ A1 / batch_size
+    db2 = np.sum(dZ2, axis=0) / batch_size
+    dA1 = dZ2 @ W2
+    dZ1 = A1 * (1 - A1) * dA1
+    dW1 = dZ1.T @ data / batch_size
+    db1 = np.sum(dZ1, axis=0) / batch_size
     # collect grads
-    grads = {'W1': d_W1, 'b1': d_b1, 'W2': d_W2, 'b2': d_b2}
+    grads = {'W1': dW1, 'b1': db1, 'W2': dW2, 'b2': db2}
     return grads
 
 

@@ -62,29 +62,30 @@ def run_em(x, phi, mu, sigma):
         More specifically, w[i, j] should contain the probability of
         example x^(i) belonging to the j-th Gaussian in the mixture.
     """
-    eps = 1e-3  # Convergence threshold
+    eps = 1e-3    # Convergence threshold
     max_iter = 2000
     n_examples, dim = x.shape
 
     ll = prev_ll = - np.inf
-    log_joint = np.empty([n_examples, K])
+    log_prob = np.empty([n_examples, K])
 
-    for it in range(max_iter):
+    for i in range(max_iter):
         # Do E-step
         for j in range(K):
-            exponents = ((x - mu[j]) @ LA.inv(sigma[j]) * (x - mu[j])).sum(axis=1)
-            log_joint[:,j] = - np.log(LA.det(sigma[j])) / 2 - exponents / 2 + np.log(phi[j])
-        w = log_joint - logsumexp(log_joint).reshape(-1, 1)
+            exponents = (x - mu[j]) @ LA.inv(sigma[j]) * (x - mu[j])
+            exponents = exponents.sum(axis=1)
+            log_prob[:,j] = - np.log(LA.det(sigma[j])) / 2 - exponents / 2 + np.log(phi[j])
+        w = log_prob - logsumexp(log_prob).reshape(-1, 1)
         w = np.exp(w)
+        
         # Check convergence
         # Stop when the absolute change in log-likelihood is < eps
-        ll = (- n_examples * dim / 2 * np.log(2 * np.pi) 
-              + np.sum(logsumexp(log_joint)))
+        ll = - n_examples * dim / 2 * np.log(2 * np.pi) + np.sum(logsumexp(log_prob))
         if np.abs(ll - prev_ll) < eps:
-            print(f'Converged after {it + 1} iterations\n'
-                  f'with ll loss {ll:.2f}\n')
+            print(f'Converged after {i + 1} iterations\nwith ll loss {ll:.2f}\n')
             break
         prev_ll = ll
+        
         # Do M-step
         phi = np.sum(w, axis=0) / n_examples
         for j in range(K):
@@ -112,35 +113,39 @@ def run_semi_supervised_em(x, x_tilde, z_tilde, phi, mu, sigma):
         More specifically, w[i, j] should contain the probability of
         example x^(i) belonging to the j-th Gaussian in the mixture.
     """
-    alpha = 20.  # Weight for supervised objective
-    eps = 1e-3   # Convergence threshold
+    alpha = 20.                   # Weight for supervised objective
+    eps = 1e-3                    # Convergence threshold
     max_iter = 2000
-    n_tilde, dim = x_tilde.shape  # n_tilde: the number of x_tilde's
     x = np.vstack([x, x_tilde])   # x contains all examples
-    n_examples = len(x)           # total number of examples
+    n_examples = len(x)
 
+    # x_tilde has n1 examples and weights w1
+    n1, dim = x_tilde.shape
+    w1 = alpha * (z_tilde == np.arange(K))
+    
     ll = prev_ll = - np.inf
-    log_joint = np.empty([n_examples, K])
-    w_tilde = alpha * (z_tilde == np.arange(K))
+    log_prob = np.empty([n_examples, K])
 
     for it in range(max_iter):
         # Do E-step
         for j in range(K):
-            exponents = ((x - mu[j]) @ LA.inv(sigma[j]) * (x - mu[j])).sum(axis=1)
-            log_joint[:, j] = - np.log(LA.det(sigma[j])) / 2 - exponents / 2 + np.log(phi[j])
-        w = log_joint - logsumexp(log_joint).reshape(-1, 1)
+            exponents = (x - mu[j]) @ LA.inv(sigma[j]) * (x - mu[j])
+            exponents = exponents.sum(axis=1)
+            log_prob[:, j] = - np.log(LA.det(sigma[j])) / 2 - exponents / 2 + np.log(phi[j])
+        w = log_prob - logsumexp(log_prob).reshape(-1, 1)
         w = np.exp(w)
+        
         # Check convergence
         # Stop when the absolute change in log-likelihood is < eps
         ll = (- n_examples * dim / 2 * np.log(2 * np.pi) 
-              + (logsumexp(log_joint[:-n_tilde])).sum()
-              + (w_tilde * log_joint[-n_tilde:]).sum())
+              + np.sum(logsumexp(log_prob[:-n1]))
+              + np.sum(w1 * log_prob[-n1:]))
         if np.abs(ll - prev_ll) < eps:
-            print(f'Converged after {it + 1} iterations\n'
-                  f'with ll loss {ll:.2f}\n')
+            print(f'Converged after {it + 1} iterations\nwith ll loss {ll:.2f}\n')
             break
         prev_ll = ll
-        w[-n_tilde:] = w_tilde
+        w[-n1:] = w1
+        
         # Do M-step
         phi = np.sum(w, axis=0) / n_examples
         for j in range(K):
