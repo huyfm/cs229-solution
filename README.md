@@ -13,3 +13,7 @@ Introduction from CS229's webpage:
 Tl;dr: This is an enhancement of the original favorite CS229 course. I do not own anything. For more information, please visit [the course's webpage](http://cs229.stanford.edu/syllabus-summer2019.html). Please open a new issue if you spot any error. 
 
 Happy learning, peace.
+
+## Contribution
+The list of contributors who pointed out errors and suggested solutions:
+- Nguyễn Thành Đô: fixed problem 4c.
