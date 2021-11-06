@@ -116,15 +116,15 @@ def run_semi_supervised_em(x, x_tilde, z_tilde, phi, mu, sigma):
     alpha = 20.                   # Weight for supervised objective
     eps = 1e-3                    # Convergence threshold
     max_iter = 2000
-    x = np.vstack([x, x_tilde])   # x contains all examples
-    n_examples = len(x)
+    n0, dim = x.shape             # for unobserved examples
+    n1 = x_tilde.shape[0]         # for observed examples
+    num_total = n0 + n1
 
-    # x_tilde has n1 examples and weights w1
-    n1, dim = x_tilde.shape
-    w1 = alpha * (z_tilde == np.arange(K))
+    x = np.vstack([x, x_tilde])   # new x contains all examples
+    w1 = alpha * (z_tilde == np.arange(K))    # weights for observed examples
     
     ll = prev_ll = - np.inf
-    log_prob = np.empty([n_examples, K])
+    log_prob = np.empty([num_total, K])
 
     for it in range(max_iter):
         # Do E-step
@@ -137,7 +137,7 @@ def run_semi_supervised_em(x, x_tilde, z_tilde, phi, mu, sigma):
         
         # Check convergence
         # Stop when the absolute change in log-likelihood is < eps
-        ll = (- n_examples * dim / 2 * np.log(2 * np.pi) 
+        ll = (- num_total * dim / 2 * np.log(2 * np.pi) 
               + np.sum(logsumexp(log_prob[:-n1]))
               + np.sum(w1 * log_prob[-n1:]))
         if np.abs(ll - prev_ll) < eps:
@@ -147,7 +147,7 @@ def run_semi_supervised_em(x, x_tilde, z_tilde, phi, mu, sigma):
         w[-n1:] = w1
         
         # Do M-step
-        phi = np.sum(w, axis=0) / n_examples
+        phi = np.sum(w, axis=0) / (n0 + alpha * n1)
         for j in range(K):
             mu[j] = w[:, j] @ x / np.sum(w[:, j])
             sigma[j] = w[:, j] * (x - mu[j]).T @ (x - mu[j]) / np.sum(w[:, j])
